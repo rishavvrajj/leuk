@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* GitFolio is a deliberately dark, glassy theme — ignore system light mode. */
+/* leuk is a deliberately dark, glassy theme — ignore system light mode. */
 :root {
   color-scheme: dark;
 }

@@ -1,4 +1,4 @@
-# GitFolio
+# leuk
 
 Type a GitHub username on the landing page → instantly get a beautiful, shareable dev-portfolio page at `/[username]`.
 

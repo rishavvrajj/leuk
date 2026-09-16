@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gitfolio.app"),
+  metadataBase: new URL("https://leuk.app"),
   title: {
-    default: "GitFolio — Turn any GitHub username into a portfolio",
+    default: "leuk — Turn any GitHub username into a portfolio",
     template: "%s",
   },
   description:

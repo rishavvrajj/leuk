@@ -66,7 +66,7 @@ function authHeaders(): Record<string, string> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     // Inoffensive UA helps avoid spurious 403 "must provide User-Agent" blocks
-    "User-Agent": "GitFolio",
+    "User-Agent": "Leuk",
   };
   if (TOKEN) {
     headers["Authorization"] = `Bearer ${TOKEN}`;

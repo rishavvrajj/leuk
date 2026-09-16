@@ -31,8 +31,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-5xl font-black tracking-tight sm:text-7xl">
-          <span className="text-zinc-50">Git</span>
-          <span className="text-emerald-400">Folio</span>
+          <span className="text-emerald-400">leuk</span>
         </h1>
         <p className="mt-4 max-w-md text-lg text-zinc-400 sm:text-xl">
           Type a GitHub username. Get a portfolio. Instantly.
