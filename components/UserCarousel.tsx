@@ -30,7 +30,7 @@ export default async function UserCarousel() {
     });
 
     return (
-        <section className="w-full py-1">
+        <section className="w-full py-1 border-4 border-white">
             <div className="relative overflow-hidden">
                 {/* Edge fade masks, matching the site's dark background */}
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-black4 to-transparent" />
