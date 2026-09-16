@@ -1,32 +1,32 @@
 export default function NavBar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md">
-      <nav className="m-4 flex items-center justify-between px-6">
+    <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-xs">
+      <nav className="m-4 flex items-center justify-between">
 
         {/* Logo */}
         <a
           href="/"
           className="flex items-center gap-2 text-2xl font-semibold tracking-tight hover:scale-105"
         >
-          <img src="/favicon.png" className="w-8 h-8"/>
+          <img src="/favicon.png" className="w-6 h-6"/>
         </a>
 
         {/* NavLink */}
-        <div className="items-center gap-8 text-sm text-zinc-400 md:flex">
+        <div className="flex items-center gap-4 md:gap-8 text-sm text-zinc-900">
           <a
-            className="transition hover:text-zinc-100"
-            href="#usecase"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-200 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            href="#Home"
           >
             Home
           </a>
           <a
-            className="transition hover:text-zinc-100"
-            href="#beliefs"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-200 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            href="#UserCard"
           >
             Use Cases
           </a>
           <a
-            className="transition hover:text-zinc-100"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-200 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
             href="#profiles"
           >
             Explore profiles

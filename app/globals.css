@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "tailwindcss";
 
 /* leuk is a deliberately dark, glassy theme — ignore system light mode. */
@@ -10,8 +11,10 @@ html {
 }
 
 body {
-  background-color: #09090b; /* zinc-950 */
-  color: #fafafa; /* zinc-50 */
+  background-color: #09090b;
+  /* zinc-950 */
+  color: #fafafa;
+  /* zinc-50 */
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -22,14 +25,39 @@ body {
   width: 10px;
   height: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background-color: #3f3f46; /* zinc-700 */
+  background-color: #3f3f46;
+  /* zinc-700 */
   border-radius: 9999px;
   border: 2px solid #09090b;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #52525b; /* zinc-600 */
+  background-color: #52525b;
+  /* zinc-600 */
+}
+
+/* Smooth anchor scrolling behind fixed navbar */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* Selection color to match theme */
+::selection {
+  background-color: rgba(16, 185, 129, 0.25);
+  /* emerald-500/25 */
+  color: #fafafa;
+}
+
+.nunito-variable {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
