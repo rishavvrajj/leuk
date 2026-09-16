@@ -23,7 +23,7 @@ const users = [
 
 export default function UserCard() {
   return (
-    <section id="UserCard" className="min-h-full w-full">
+    <section id="UserCard" className="min-h-full w-full p-2">
       <div className="mx-4 grid grid-cols-1 justify-between gap-4 md:grid-cols-2 lg:grid-cols-3">
         {users.map((user) => (
           <article

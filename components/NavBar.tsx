@@ -5,8 +5,8 @@ export default function NavBar() {
 
         {/* Logo */}
         <a
-          href="/"
-          className="flex items-center gap-2 text-2xl font-semibold tracking-tight hover:scale-105"
+          href="#Home"
+          className="flex items-center gap-2 text-2xl font-semibold tracking-tight transition-all duration-300 hover:scale-105"
         >
           <img src="/favicon.png" className="w-6 h-6"/>
         </a>

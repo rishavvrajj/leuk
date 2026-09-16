@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import LogoCarousel from "@/components/LogoCarousel";
 import SearchBox from "@/components/SearchBox";
 import UserCard from "@/components/UserCard";
 
@@ -32,7 +33,8 @@ export default function Home() {
       {/* Hero */}
       <HeroSection />
 
-      {/* UserCard */}
+      {/* Users */}
+      <LogoCarousel />
       <UserCard />
 
       {/* ─── Manifesto ─── */}

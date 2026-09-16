@@ -29,8 +29,9 @@ export default function HeroSection() {
 
                 <div className="mx-auto flex w-full max-w-105 items-center gap-2 rounded-full border border-black/50 backdrop-blur-sm p-1 shadow-sm transition focus-within:border-black/40 focus-within:ring-4 focus-within:ring-black/5">
                     <input
+                        autoFocus
                         type="text"
-                        placeholder="eg. rishavvrajj"
+                        placeholder="eg. torvalds"
                         className="min-w-0 flex-1 bg-transparent px-4 py-2 text-sm text-black outline-none placeholder:text-black/40"
                     />
 

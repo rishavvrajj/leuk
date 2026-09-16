@@ -40,7 +40,6 @@ export default function SearchBox() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="e.g. torvalds"
-          autoFocus
           aria-label="GitHub username"
           className="h-14 flex-1 rounded-xl border border-zinc-800 bg-zinc-900/70 px-5 text-lg text-zinc-100 placeholder-zinc-500 outline-none backdrop-blur transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30"
         />
