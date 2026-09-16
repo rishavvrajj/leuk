@@ -1,7 +1,7 @@
 import HeroSection from "@/components/HeroSection";
 import LogoCarousel from "@/components/LogoCarousel";
 import SearchBox from "@/components/SearchBox";
-import UserCard from "@/components/UserCard";
+import UserCarousel from "@/components/UserCarousel";
 
 const BELIEFS = [
   {
@@ -33,9 +33,9 @@ export default function Home() {
       {/* Hero */}
       <HeroSection />
 
-      {/* Users */}
+      {/* Carousel */}
       <LogoCarousel />
-      <UserCard />
+      <UserCarousel />
 
       {/* ─── Manifesto ─── */}
       <section

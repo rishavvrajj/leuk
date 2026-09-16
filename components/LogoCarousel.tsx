@@ -17,7 +17,7 @@ const LOGOS = [
 
 function LogoItem({ name }: { name: (typeof LOGOS)[number] }) {
   return (
-    <span className="group/logo flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-900">
+    <span className="group/logo flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-900 hover:scale-105">
       <StackIcon
         name={name}
         className="h-4 w-4 transition-transform duration-200 group-hover/logo:scale-110"
