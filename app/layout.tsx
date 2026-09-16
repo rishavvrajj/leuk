@@ -13,13 +13,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://leuk.app"),
+  metadataBase: new URL("https://leuk-eight.vercel.app/"),
   title: {
     default: "leuk",
     template: "%s",
   },
   description:
-    "Type a GitHub username. Get a beautiful, shareable dev portfolio. Instantly.",
+    "Your work is already speaking. Almost no one can hear it. Leuk gives your GitHub a place to live — a beautiful, shareable portfolio, no forms, no rehearsing.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://leuk-eight.vercel.app/",
+    siteName: "leuk",
+    title: "leuk — your work is already speaking",
+    description:
+      "Somewhere in your commit history is proof of who you're becoming. Leuk gives it a place to live.",
+    images: [
+      {
+        url: "/OG.png",
+        width: 1877,
+        height: 907,
+        alt: "leuk — your work is already speaking. Almost no one can hear it.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@leuk",
+    title: "leuk — your work is already speaking",
+    description:
+      "Somewhere in your commit history is proof of who you're becoming. Leuk gives it a place to live.",
+    images: ["/OG.png"],
+  },
   icons: {
     icon: "/favicon.ico",
   },
