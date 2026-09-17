@@ -30,7 +30,7 @@ export default async function UserCarousel() {
     });
 
     return (
-        <section className="w-full py-1 border-4 border-white">
+        <section className="w-full py-1 border-4 border-zinc-300">
             <div className="relative overflow-hidden">
                 {/* Edge fade masks, matching the site's dark background */}
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-black4 to-transparent" />
@@ -44,7 +44,7 @@ export default async function UserCarousel() {
                         return (
                             <div
                                 key={`${user.username}-${i}`}
-                                className="group/user flex shrink-0 items-center gap-2 whitespace-nowrap transition-all hover:scale-105"
+                                className="group/user flex shrink-0 items-center gap-2 whitespace-nowrap transition-all duration-300 hover:scale-105"
                             >
                                 {portfolio?.avatarUrl ? (
                                     <Image
@@ -52,7 +52,7 @@ export default async function UserCarousel() {
                                         alt={`${name} avatar`}
                                         width={16}
                                         height={16}
-                                        className="h-4 w-4 rounded-full object-cover transition-transform duration-200 group-hover/user:scale-110"
+                                        className="h-4 w-4 rounded-full object-cover transition-transform duration-300 group-hover/user:scale-110"
                                     />
                                 ) : (
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 text-sm font-bold text-zinc-300">

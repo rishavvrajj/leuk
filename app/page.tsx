@@ -7,7 +7,7 @@ import Work from "@/components/Work";
 
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col bg-black4">
+    <main className="flex flex-1 flex-col bg-black/15">
 
       {/* Hero */}
       <HeroSection />
