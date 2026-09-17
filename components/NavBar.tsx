@@ -21,9 +21,15 @@ export default function NavBar() {
           </a>
           <a
             className="transition duration-300 decoration-emerald-800 hover:text-zinc-200 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
-            href="#UserCard"
+            href="#Features"
           >
-            Use Cases
+            Features
+          </a>
+          <a
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-200 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            href="#Beliefs"
+          >
+            Beliefs
           </a>
           <a
             className="transition duration-300 decoration-emerald-800 hover:text-zinc-200 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"

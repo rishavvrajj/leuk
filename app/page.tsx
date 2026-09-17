@@ -3,11 +3,11 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import LogoCarousel from "@/components/LogoCarousel";
 import UserCarousel from "@/components/UserCarousel";
-import Work from "@/components/Work";
+import Beliefs from "@/components/Beliefs";
 
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col bg-black/15">
+    <main className="flex flex-1 flex-col bg-neutral-950">
 
       {/* Hero */}
       <HeroSection />
@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* others */}
       <Features />
-      <Work />
+      <Beliefs />
 
       {/* Footer */}
       <Footer/>

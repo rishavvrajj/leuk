@@ -5,16 +5,22 @@ export default function Footer() {
     <div>
         
       {/* ─── Footer ─── */}
-      <footer className="border-t border-zinc-800/60 px-6 py-8">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-          <p className="text-sm text-zinc-600">
+      <footer className="border-t border-zinc-800/60 mx-20 py-4">
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-sm text-zinc-600 transition duration-300 hover:text-zinc-300 cursor-pointer">
             © {new Date().getFullYear()} Leuk
           </p>
           <div className="flex gap-6 text-sm text-zinc-600">
-            <a href="#beliefs" className="transition hover:text-zinc-300">
-              Beliefs
+            <a target='_blank' href="https://x.com/rishavvrajj" className="transition duration-300 hover:text-zinc-300">
+              x
             </a>
-            <a href="/" className="transition hover:text-zinc-300">
+            <a target='_blank' href="https://github.com/rishavvrajj" className="transition duration-300 hover:text-zinc-300">
+              github
+            </a>
+            <a target='_blank' href="https://www.linkedin.com/in/rishavv-rajj/" className="transition duration-300 hover:text-zinc-300">
+              linkedin
+            </a>
+            <a href="#Home" className="transition duration-300 hover:text-zinc-300">
               Get started
             </a>
           </div>

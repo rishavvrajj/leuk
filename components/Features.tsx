@@ -4,7 +4,7 @@ const CARDS = [
     {
         img: "/f1.svg",
         title: "Real work, not résumés",
-        body: "Leuk reads the public work you've already shipped and arranges it into a living profile, no bullet points, no noise.",
+        body: "Leuk reads the public work you've already shipped and arranges it into a living a1ile, no bullet points, no noise.",
     },
     {
         img: "/f2.svg",
@@ -25,8 +25,8 @@ const CARDS = [
 
 export default function Features() {
     return (
-        <section id="features-visual" className="w-full py-8 px-">
-            <div className="mx-12 space-y-12">
+        <section id="Features" className="w-full py-8 px-20">
+            <div className="space-y-12">
                 {/* Heading */}
                 <div className="mx-auto text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
@@ -51,7 +51,7 @@ export default function Features() {
                                     height={100}
                                     src={card.img}
                                     alt=""
-                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    className="h-full w-full object-cover"
                                 />
                             </div>
 
