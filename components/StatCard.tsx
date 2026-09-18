@@ -5,11 +5,11 @@ interface StatCardProps {
 
 export default function StatCard({ label, value }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/20 p-4 transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/40">
+    <div className="px-2 border-l-2 border-zinc-800/60">
       <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">
         {label}
       </span>
-      <span className="mt-2 block text-2xl font-semibold tabular-nums tracking-tight text-zinc-100">
+      <span className="mt-1 block text-xl font-semibold tabular-nums tracking-tight text-zinc-100">
         {value}
       </span>
     </div>

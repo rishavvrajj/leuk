@@ -26,17 +26,17 @@ export default function RefreshButton({ username }: { username: string }) {
   }
 
   return (
-    <div className="flex flex-col items-end gap-1">
+    <div className="flex flex-col items-end gap-1 hover:cursor-pointer">
       <button
         type="button"
         onClick={handleRefresh}
         disabled={pending}
         aria-label="Refresh GitHub data"
-        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800/80 bg-zinc-900/40 px-2.5 py-1 text-xs font-mono text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-200 hover:bg-zinc-800/40 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800/80 bg-zinc-900/40 px-2.5 py-1 text-sm font-mono text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-200 hover:bg-zinc-800/40 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 hover:cursor-pointer"
       >
         <svg
           aria-hidden="true"
-          className={`h-3 w-3 ${pending ? "animate-spin text-zinc-200" : "text-zinc-500"}`}
+          className={`h-4 w-4 ${pending ? "animate-spin text-zinc-200" : "text-zinc-500"}`}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

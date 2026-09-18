@@ -7,6 +7,9 @@ import StatCard from "@/components/StatCard";
 import LanguageBars from "@/components/LanguageBars";
 import RepoCard from "@/components/RepoCard";
 import RefreshButton from "@/components/RefreshButton";
+import Background from "@/components/Background";
+import GithubCalendar from "@/components/Github-Calendar";
+import { GitHubCalendar } from "react-github-calendar";
 
 const nf = new Intl.NumberFormat("en-US");
 
@@ -90,14 +93,19 @@ export default async function PortfolioPage({ params }: Props) {
       <div className="mx-auto w-full max-w-3xl border border-zinc-800/60">
 
         {/* Top Navigation Bar */}
-        <div className="flex items-center justify-between border-b border-zinc-800/60 p-4">
+        <div className="flex items-center justify-between border-b border-zinc-800/60 px-4 py-2">
           <Link
             href="/"
-            className="text-xs font-mono text-zinc-500 hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded"
+            className="text-md font-mono text-zinc-500 hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded"
           >
-            ← leuk
+            leuk
           </Link>
           <RefreshButton username={portfolio.username} />
+        </div>
+
+        {/* Background */}
+        <div className="h-30 w-full">
+          <Background />
         </div>
 
         {/* Identity & Header */}
@@ -196,6 +204,10 @@ export default async function PortfolioPage({ params }: Props) {
             />
           </div>
         </section>
+
+        <div className='flex items-center justify-center p-4'>
+          <GitHubCalendar blockSize={9.9} username={portfolio.username} />
+        </div>
 
         {/* Language Breakdown */}
         {hasLanguages && (
