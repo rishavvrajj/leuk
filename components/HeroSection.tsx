@@ -1,6 +1,36 @@
+'use client'
+
+import { useState } from 'react'
 import NavBar from './NavBar'
+import { useRouter } from 'next/navigation';
+
+const USERNAME_RE = /^[a-zA-Z0-9-]{1,39}$/;
 
 export default function HeroSection() {
+    const router = useRouter();
+    const [value, setValue] = useState("");
+    const [error, setError] = useState<string | null>("");
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const raw = value.trim().replace(/^@/, "");
+        if (!raw) {
+            setError("Enter a Github username.");
+            return;
+        }
+
+        const nomalized = raw.toLocaleLowerCase();
+        if (!USERNAME_RE.test(nomalized)) {
+            setError(
+                "Usernames can only contain letters, numbers, and hyphens (1–39 chars)."
+            )
+            return;
+        }
+        setError(null);
+        router.push(`/${value}`);
+    }
+
     return (
         <section id='Home' className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden text-center">
             <NavBar />
@@ -27,10 +57,12 @@ export default function HeroSection() {
                     live.
                 </p>
 
-                <div className="mx-auto flex w-full max-w-105 items-center gap-2 rounded-full border border-black/50 backdrop-blur-sm p-1 shadow-sm transition focus-within:border-black/40 focus-within:ring-4 focus-within:ring-black/5">
+                <form onSubmit={handleSubmit} className="mx-auto p-1 flex w-full max-w-105 items-center gap-2 rounded-full border border-black/50 backdrop-blur-sm shadow-sm transition focus-within:border-black/40 focus-within:ring-4 focus-within:ring-black/5">
                     <input
                         autoFocus
                         type="text"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
                         placeholder="eg. torvalds"
                         className="min-w-0 flex-1 bg-transparent px-4 py-2 text-sm text-black outline-none placeholder:text-black/40"
                     />
@@ -41,7 +73,15 @@ export default function HeroSection() {
                     >
                         Create
                     </button>
-                </div>
+                </form>
+                {error && (
+                    <p
+                        role="alert"
+                        className="-mt-4 text-[11px] text-red-900"
+                    >
+                        {error}
+                    </p>
+                )}
 
                 <p className="text-sm text-zinc-800">
                     No forms. No rehearsing. Your GitHub is the whole story.
