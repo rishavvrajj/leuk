@@ -8,7 +8,6 @@ import LanguageBars from "@/components/LanguageBars";
 import RepoCard from "@/components/RepoCard";
 import RefreshButton from "@/components/RefreshButton";
 import Background from "@/components/Background";
-import GithubCalendar from "@/components/Github-Calendar";
 import { GitHubCalendar } from "react-github-calendar";
 
 const nf = new Intl.NumberFormat("en-US");
