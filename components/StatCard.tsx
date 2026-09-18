@@ -1,19 +1,17 @@
 interface StatCardProps {
-  icon: string;
   label: string;
   value: number | string;
 }
 
-export default function StatCard({ icon, label, value }: StatCardProps) {
+export default function StatCard({ label, value }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6 backdrop-blur transition hover:border-emerald-500">
-      <div className="flex items-center gap-2 text-sm uppercase tracking-wide text-zinc-500">
-        <span aria-hidden>{icon}</span>
-        <span>{label}</span>
-      </div>
-      <div className="mt-3 text-3xl font-bold tabular-nums text-zinc-50">
+    <div className="rounded-xl border border-zinc-800/60 bg-zinc-900/20 p-4 transition-colors hover:border-zinc-700/80 hover:bg-zinc-900/40">
+      <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">
+        {label}
+      </span>
+      <span className="mt-2 block text-2xl font-semibold tabular-nums tracking-tight text-zinc-100">
         {value}
-      </div>
+      </span>
     </div>
   );
 }

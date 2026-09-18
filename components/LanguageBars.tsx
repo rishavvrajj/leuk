@@ -8,19 +8,15 @@ export default function LanguageBars({ breakdown }: LanguageBarsProps) {
   const entries = Object.entries(breakdown).sort((a, b) => b[1] - a[1]);
 
   if (entries.length === 0) {
-    return (
-      <p className="py-6 text-center text-sm text-zinc-500">
-        No language data available.
-      </p>
-    );
+    return null;
   }
 
   const colors = entries.map(([lang]) => languageColor(lang));
 
   return (
     <div className="space-y-4">
-      {/* Single stacked horizontal bar */}
-      <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
+      {/* Single stacked progress bar */}
+      <div className="flex h-1.5 w-full overflow-hidden rounded-full bg-zinc-900 gap-0.5">
         {entries.map(([lang, pct], i) => (
           <div
             key={lang}
@@ -30,26 +26,18 @@ export default function LanguageBars({ breakdown }: LanguageBarsProps) {
         ))}
       </div>
 
-      {/* One row per language */}
-      <div className="space-y-3">
+      {/* Grid breakdown */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2.5">
         {entries.map(([lang, pct], i) => (
-          <div key={lang} className="flex items-center gap-3">
-            <span
-              className="h-3 w-3 shrink-0 rounded-full"
-              style={{ backgroundColor: colors[i] }}
-            />
-            <span className="w-32 truncate text-sm font-medium text-zinc-300">
-              {lang}
-            </span>
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-zinc-800">
-              <div
-                className="h-full rounded-full"
-                style={{ width: `${pct}%`, backgroundColor: colors[i] }}
+          <div key={lang} className="flex items-center justify-between text-xs">
+            <span className="flex items-center gap-2 truncate">
+              <span
+                className="h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: colors[i] }}
               />
-            </div>
-            <span className="w-10 text-right text-sm tabular-nums text-zinc-400">
-              {pct}%
+              <span className="font-medium text-zinc-300 truncate">{lang}</span>
             </span>
+            <span className="font-mono text-zinc-500 tabular-nums">{pct}%</span>
           </div>
         ))}
       </div>
