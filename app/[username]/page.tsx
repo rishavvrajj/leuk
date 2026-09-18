@@ -16,24 +16,56 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = await params;
+
   try {
     const p = await getPortfolio(username);
+
+    const title = p.name
+      ? `${p.name} (@${p.username}) — GitHub`
+      : `@${p.username} — GitHub`;
+
+    const description = p.bio ?? `${p.username}'s GitHub portfolio.`;
+
     return {
-      title: p.name
-        ? `${p.name} (@${p.username}) — GitHub Portfolio`
-        : `@${p.username} — GitHub Portfolio`,
-      description: p.bio ?? `${p.username}'s GitHub portfolio.`,
+      title,
+      description,
       openGraph: {
-        title: p.name
-          ? `${p.name} (@${p.username}) — GitHub Portfolio`
-          : `@${p.username} — GitHub Portfolio`,
-        images: [p.avatarUrl],
+        title,
+        description,
+        type: 'profile',
+        images: p.avatarUrl
+          ? [
+              {
+                url: p.avatarUrl,
+                width: 400,
+                height: 400,
+                alt: `${p.name ?? p.username}'s avatar`,
+              },
+            ]
+          : [],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: p.avatarUrl ? [p.avatarUrl] : [],
       },
     };
   } catch {
+    const title = `@${username} — GitHub Portfolio`;
+
     return {
-      title: `@${username} — GitHub Portfolio`,
-      description: `${username}'s GitHub portfolio.`,
+      title,
+      openGraph: {
+        title,
+        type: 'profile',
+        images: [],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        images: [],
+      },
     };
   }
 }
