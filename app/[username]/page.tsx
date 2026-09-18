@@ -8,7 +8,7 @@ import LanguageBars from "@/components/LanguageBars";
 import RepoCard from "@/components/RepoCard";
 import RefreshButton from "@/components/RefreshButton";
 import Background from "@/components/Background";
-import { GitHubCalendar } from "react-github-calendar";
+import Calendar from "@/components/Calendar";
 
 const nf = new Intl.NumberFormat("en-US");
 
@@ -205,7 +205,7 @@ export default async function PortfolioPage({ params }: Props) {
         </section>
 
         <div className='flex items-center justify-center p-4'>
-          <GitHubCalendar blockSize={9.9} username={portfolio.username} />
+          <Calendar username={portfolio.username} />
         </div>
 
         {/* Language Breakdown */}
@@ -222,10 +222,10 @@ export default async function PortfolioPage({ params }: Props) {
         {hasRepos && (
           <section className="p-4 border border-zinc-800/60">
             <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
-              Repositories
+              Top Repositories
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {portfolio.repos.map((repo) => (
+              {portfolio.repos.slice(0, 4).map((repo) => (
                 <RepoCard key={repo.name} repo={repo} />
               ))}
             </div>

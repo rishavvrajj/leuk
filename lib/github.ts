@@ -58,8 +58,6 @@ interface GitHubRepoResponse {
 
 const GITHUB_API = "https://api.github.com";
 
-// Optional token from env — raises the unauthenticated rate limit from
-// 60 req/hr to 5000 req/hr. The app works fine without it.
 const TOKEN = process.env.GITHUB_TOKEN;
 
 function authHeaders(): Record<string, string> {
@@ -98,17 +96,25 @@ async function buildPortfolio(
 
   const totalStars = nonForks.reduce((sum, r) => sum + r.stargazers_count, 0);
 
-  // languageBreakdown: percentage of repos per language, sorted desc.
+  // 1. Count the language occurrences
   const langCounts = new Map<string, number>();
+  let totalReposWithLanguage = 0; // Track only repos that have a language
+
   for (const r of nonForks) {
     if (!r.language) continue;
     langCounts.set(r.language, (langCounts.get(r.language) ?? 0) + 1);
+    totalReposWithLanguage++; // Increment only when a language exists
   }
-  const repoTotal = nonForks.length || 1;
+
+  // 2. Safe fallback to avoid division by zero
+  const repoTotal = totalReposWithLanguage || 1;
+
+  // 3. Build the percentage map
   const languageBreakdown: Record<string, number> = {};
   for (const [lang, count] of [...langCounts.entries()].sort(
     (a, b) => b[1] - a[1]
   )) {
+    // Now this divides by the filtered total, giving you a true percentage
     languageBreakdown[lang] = Math.round((count / repoTotal) * 100);
   }
 

@@ -9,14 +9,14 @@ export default function RepoCard({ repo }: { repo: Repo }) {
       href={repo.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col rounded-xl border border-zinc-800/60 bg-zinc-900/20 p-5 transition-all duration-200 hover:border-zinc-700/80 hover:bg-zinc-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+      className="group flex flex-col border border-zinc-800 bg-zinc-900/20 p-5 transition-all duration-200 hover:border-zinc-700/80 hover:bg-zinc-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
     >
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm sm:text-base font-medium text-zinc-100 group-hover:text-white transition-colors flex items-center gap-1.5 truncate">
+        <h3 className="text-sm font-medium text-zinc-100 group-hover:text-white transition-colors flex items-center gap-1.5 truncate">
           <span className="truncate">{repo.name}</span>
           <svg
             aria-hidden="true"
-            className="h-3.5 w-3.5 shrink-0 text-zinc-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-300"
+            className="h-3 w-3 shrink-0 text-zinc-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-300"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -33,7 +33,7 @@ export default function RepoCard({ repo }: { repo: Repo }) {
       </div>
 
       {repo.description && (
-        <p className="mt-2 text-xs sm:text-sm text-zinc-400 line-clamp-2 leading-relaxed">
+        <p className="mt-2 text-xs text-zinc-400 line-clamp-2 leading-relaxed">
           {repo.description}
         </p>
       )}
