@@ -29,11 +29,11 @@ function LogoItem({ name }: { name: (typeof LOGOS)[number] }) {
 
 export default function LogoCarousel() {
   return (
-    <section className="w-full py-1 bg-zinc-300">
+    <section className="w-full py-2 bg-zinc-300">
       <div className="relative overflow-hidden">
         {/* Edge fade masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-black4 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-black4 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 md:w-28 bg-gradient-to-r from-zinc-300 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 md:w-28 bg-gradient-to-l from-zinc-300 to-transparent" />
 
         <div className="marquee-track flex w-max items-center gap-8 py-2 hover:cursor-pointer">
           {[...LOGOS, ...LOGOS].map((logo, i) => (

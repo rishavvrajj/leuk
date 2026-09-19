@@ -25,42 +25,42 @@ const CARDS = [
 
 export default function Features() {
     return (
-        <section id="Features" className="w-full py-8 px-20">
-            <div className="space-y-12">
+        <section id="Features" className="w-full py-16 sm:py-20 md:py-24 px-4 sm:px-8 md:px-12 lg:px-20 max-w-7xl mx-auto">
+            <div className="space-y-10 sm:space-y-12">
                 {/* Heading */}
-                <div className="mx-auto text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+                <div className="mx-auto max-w-2xl text-center px-2">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-100">
                         Work <span className="italic text-emerald-800">only</span>. No <span className="italic text-emerald-800">noise</span>.
                     </h2>
-                    <p className="mt-4 text-sm leading-relaxed text-zinc-500">
+                    <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed text-zinc-400">
                         Everything built around a single idea: your work deserves to be read.
                     </p>
                 </div>
 
                 {/* Cards */}
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                     {CARDS.map((card) => (
                         <div
                             key={card.title}
-                            className="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:cursor-pointer"
+                            className="group flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-3 sm:p-4 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:cursor-pointer"
                         >
                             {/* Image */}
-                            <div className="aspect-[4/5] w-full overflow-hidden bg-black">
+                            <div className="relative aspect-[4/3] sm:aspect-[4/5] w-full overflow-hidden rounded-lg bg-zinc-950 flex items-center justify-center">
                                 <Image
-                                    width={80}
-                                    height={100}
+                                    width={300}
+                                    height={300}
                                     src={card.img}
                                     alt=""
-                                    className="h-full w-full object-cover"
+                                    className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                                 />
                             </div>
 
                             {/* Text */}
-                            <div className="flex flex-1 flex-col items-start justify-center gap-2 py-4">
-                                <h3 className="text-md font-semibold text-zinc-100">
+                            <div className="flex flex-1 flex-col items-start justify-start gap-1.5 pt-4 pb-2">
+                                <h3 className="text-sm sm:text-base font-semibold text-zinc-100">
                                     {card.title}
                                 </h3>
-                                <p className="text-xs leading-relaxed text-zinc-500">
+                                <p className="text-xs sm:text-sm leading-relaxed text-zinc-400">
                                     {card.body}
                                 </p>
                             </div>

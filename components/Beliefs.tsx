@@ -25,39 +25,40 @@ const BELIEFS = [
 
 export default function Beliefs() {
     return (
-        <section id="Beliefs" className="w-full px-20 py-10">
-            <div className="space-y-12">
+        <section id="Beliefs" className="flex items-center justify-center mx-4 sm:mx-8 md:mx-30 py-2 sm:py-16">
+            <div className="space-y-4 sm:space-y-12">
                 {/* Heading */}
-                <div className="flex justify-between text-center">
-                    <h2 className="text-3xl font-bold tracking-tight w-1/2 text-zinc-100 text-start">
-                        <span className="text-7xl">What we</span><br /><span className="text-5xl italic text-emerald-800">believe</span> .
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-2">
+                    <h2 className="text-5xl font-bold tracking-tight text-zinc-100 text-left w-full md:w-1/2">
+                        <span className="text-4xl sm:text-6xl lg:text-7xl block">What we</span>
+                        <span className="text-3xl sm:text-5xl lg:text-5xl italic text-emerald-800">believe</span> .
                     </h2>
-                    <p className="text-sm pt-2 pl-4 leading-relaxed italic text-zinc-500 text-start w-1/2">
+                    <p className="hidden lg:block text-xs md:text-sm leading-relaxed italic text-zinc-400 text-left w-full md:w-1/2">
                         Leuk exists to give that story a home. We believe growth should be visible, progress should be celebrated, and builders should be able to look back at their journey with pride—not just at what they shipped, but at how far they’ve come.
                     </p>
                 </div>
 
                 {/* Cards */}
-                <div className="grid grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                     {BELIEFS.map((b) => (
                         <div
                             key={b.title}
-                            className="flex flex-col h-100 items-center justify-between transition-all duration-300 hover:border-zinc-700 hover:cursor-pointer hover:-translate-y-1"
+                            className="group gap-4 flex flex-col items-start justify-between transition-all duration-300 hover:border-zinc-700 hover:cursor-pointer hover:-translate-y-1"
                         >
-                            <div className="aspect-5/5 overflow-hidden">
+                            <div className="relative aspect-square w-full overflow-hidden flex items-center justify-center">
                                 <Image
-                                    width={80}
-                                    height={80}
+                                    width={400}
+                                    height={500}
                                     src={b.src}
                                     alt=""
-                                    className="h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
                             </div>
-                            <div className="">
-                                <h3 className="text-md font-semibold text-zinc-100">
+                            <div className="space-y-1 md:h-20 lg:h-16">
+                                <h3 className="text-xs md:text-sm font-semibold text-zinc-100">
                                     {b.title}
                                 </h3>
-                                <p className="text-sm leading-relaxed text-zinc-500">
+                                <p className="text-[8px] md:text-xs leading-relaxed text-zinc-400">
                                     {b.body}
                                 </p>
                             </div>

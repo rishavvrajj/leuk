@@ -97,7 +97,7 @@ export default async function PortfolioPage({ params }: Props) {
             href="/"
             className="text-md font-mono text-zinc-500 hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded"
           >
-            leuk
+            leuk Back and a charme company or rechout me portfolio magic portfolio projectfulk, portfolio front, isme d a option, domain dall feature, is a sample management genuinely simple extraordinary, bad, times patch landing, large response related system, sharing kud scarlet drain, but she means test, market, starting State of Yaming, IsmayboyJohn, StarUSBC crypto, little draw history first year, but rise yad never rules granding sick third third years, head hell it caps, you haven't
           </Link>
           <RefreshButton username={portfolio.username} />
         </div>

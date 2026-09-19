@@ -30,11 +30,11 @@ export default async function UserCarousel() {
     });
 
     return (
-        <section className="w-full py-1 border-4 border-zinc-300">
+        <section id="profiles" className="w-full py-2 border-y border-zinc-800 bg-zinc-950">
             <div className="relative overflow-hidden">
                 {/* Edge fade masks, matching the site's dark background */}
-                <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-black4 to-transparent" />
-                <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-black4 to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 md:w-28 bg-gradient-to-r from-zinc-950 to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 md:w-28 bg-gradient-to-l from-zinc-950 to-transparent" />
 
                 <div className="user-marquee flex w-max items-center gap-8 py-2 hover:cursor-pointer">
                     {[...users, ...users].map((user, i) => {
