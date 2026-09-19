@@ -7,7 +7,7 @@ export default function NavBar() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 backdrop-blur-xs">
-      <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 md:px-8 flex items-center justify-between">
+      <nav className="mx-auto px-4 py-4 sm:px-6 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#Home"
