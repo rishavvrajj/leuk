@@ -34,7 +34,7 @@ export default function Calendar({ username }: { username: string }) {
             } else {
                 // large screen
                 setFontSize(14)
-                setBlockSize(10)
+                setBlockSize(9.9)
             }
         }
 
