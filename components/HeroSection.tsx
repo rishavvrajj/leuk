@@ -39,9 +39,9 @@ export default function HeroSection() {
                 <img src="/bg.png" alt="" className='object-cover h-full w-full backdrop-blur-3xl' />
             </div>
 
-            <div className="relative z-10 w-full max-w-4xl mx-auto space-y-4 sm:space-y-6">
+            <div className="relative flex flex-col items-center justify-center z-10 w-full max-w-4xl mx-auto space-y-4 sm:space-y-6">
 
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 leading-tight">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-zinc-900 leading-tight">
                     Your work is already speaking.{" "}
                     <br className="hidden sm:block" />
                     <span className=''>
@@ -50,21 +50,21 @@ export default function HeroSection() {
                     </span>
                 </h1>
 
-                <p className="mx-auto max-w-2xl px-2 text-xs sm:text-sm md:text-base leading-relaxed text-zinc-800">
+                <p className="lg:w-2xl hidden md:block px-2 text-xs sm:text-sm md:text-sm leading-relaxed text-zinc-800">
                     Somewhere in your commit history is proof of who you&apos;re becoming —
                     the 2 a.m.&nbsp;fixes, the abandoned experiments, the repo you
                     keep returning to. It&apos;s all there. It just has nowhere to
                     live.
                 </p>
 
-                <form onSubmit={handleSubmit} className="mx-auto p-1.5 flex w-full max-w-md items-center gap-2 rounded-full border border-black/50 backdrop-blur-sm shadow-sm transition focus-within:border-black/70 focus-within:ring-4 focus-within:ring-black/5 bg-white/30">
+                <form onSubmit={handleSubmit} className="p-1.5 flex w-full max-w-60 lg:max-w-md items-center gap-2 rounded-full border border-black/50 shadow-sm transition focus-within:border-black/70 focus-within:ring-4 focus-within:ring-black/5">
                     <input
                         autoFocus
                         type="text"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         placeholder="eg. torvalds"
-                        className="min-w-0 flex-1 bg-transparent px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-black outline-none placeholder:text-black/50"
+                        className="min-w-0 flex-1 bg-transparent px-2 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-black outline-none placeholder:text-black/50"
                     />
 
                     <button
@@ -83,7 +83,7 @@ export default function HeroSection() {
                     </p>
                 )}
 
-                <p className="text-xs sm:text-sm text-zinc-800">
+                <p className="text-[9px] sm:text-sm text-zinc-800">
                     No forms. No rehearsing. Your GitHub is the whole story.
                 </p>
             </div>

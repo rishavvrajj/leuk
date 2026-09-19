@@ -19,25 +19,25 @@ export default function NavBar() {
         {/* Desktop / Tablet NavLinks */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-zinc-900">
           <a
-            className="transition duration-300 decoration-emerald-800 hover:text-zinc-700 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-100 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
             href="#Home"
           >
             Home
           </a>
           <a
-            className="transition duration-300 decoration-emerald-800 hover:text-zinc-700 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-100 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
             href="#Features"
           >
             Features
           </a>
           <a
-            className="transition duration-300 decoration-emerald-800 hover:text-zinc-700 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-100 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
             href="#Beliefs"
           >
             Beliefs
           </a>
           <a
-            className="transition duration-300 decoration-emerald-800 hover:text-zinc-700 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
+            className="transition duration-300 decoration-emerald-800 hover:text-zinc-100 hover:underline hover:underline-offset-4 hover:decoration-emerald-800 decoration-2"
             href="#profiles"
           >
             Explore profiles
