@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import LogoCarousel from "@/components/LogoCarousel";
 import UserCarousel from "@/components/UserCarousel";
 import Beliefs from "@/components/Beliefs";
+import Profile from "@/components/Profile";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       {/* others */}
       <Features />
       <Beliefs />
+      <Profile />
 
       {/* Footer */}
       <Footer/>
