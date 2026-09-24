@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getPortfolio, UserNotFoundError } from "@/lib/github";
@@ -9,6 +8,8 @@ import RepoCard from "@/components/RepoCard";
 import RefreshButton from "@/components/RefreshButton";
 import Background from "@/components/Background";
 import Calendar from "@/components/Calendar";
+import SocialShare from "@/components/SocialShare";
+import Share from "@/components/Share";
 
 const nf = new Intl.NumberFormat("en-US");
 
@@ -170,6 +171,7 @@ export default async function PortfolioPage({ params }: Props) {
               </span>
             )}
           </div>
+          <Share />
         </header>
 
         {/* Stats */}
@@ -311,18 +313,7 @@ export default async function PortfolioPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="p-4 border border-zinc-800/60">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-            <span>Data from GitHub · Cached for 1 hour</span>
-            <Link
-              href="/"
-              className="text-zinc-400 hover:text-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded"
-            >
-              Create your portfolio →
-            </Link>
-          </div>
-        </footer>
+        <SocialShare />
       </div>
     </main>
   );
