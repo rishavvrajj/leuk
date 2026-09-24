@@ -11,7 +11,7 @@ type ProfileCardProps = {
     } | null;
   };
 };
-1
+
 export default function ProfileCard({ profile }: ProfileCardProps) {
   const router = useRouter();
 

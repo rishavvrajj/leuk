@@ -92,14 +92,7 @@ export default async function PortfolioPage({ params }: Props) {
       <div className="mx-auto w-full max-w-3xl border border-zinc-800/60">
 
         {/* Top Navigation Bar */}
-        <div className="flex items-center justify-between border-b border-zinc-800/60 px-4 py-2">
-          <Link
-            href="/"
-            className="text-md font-mono text-zinc-500 hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded"
-          >
-            leuk
-          </Link>
-          <RefreshButton username={portfolio.username} />
+        <div className="flex items-center justify-between border-b border-zinc-800/60 px-4 py-4">
         </div>
 
         {/* Background */}
@@ -237,7 +230,7 @@ export default async function PortfolioPage({ params }: Props) {
           <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
             Connect
           </h2>
-          <div className="divide-y divide-zinc-800/40 border-y border-zinc-800/40">
+          <div className="divide-y divide-zinc-800/40">
             <a
               href={`https://github.com/${portfolio.username}`}
               target="_blank"
@@ -320,7 +313,7 @@ export default async function PortfolioPage({ params }: Props) {
 
         {/* Footer */}
         <footer className="p-4 border border-zinc-800/60">
-          <div className="+pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
             <span>Data from GitHub · Cached for 1 hour</span>
             <Link
               href="/"

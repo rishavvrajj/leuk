@@ -4,8 +4,8 @@ import ProfileCard from "./ProfileCard";
 const usernames = [
   { id: 1, username: "torvalds" },
   { id: 2, username: "karpathy" },
-  { id: 8, username: "gustavoguanabara" },
-  { id: 9, username: "rafaballerini" },
+  { id: 8, username: "mattpocock" },
+  { id: 9, username: "kunal-kushwaha" },
   { id: 10, username: "mattpocock" },
   { id: 11, username: "3b1b" },
   { id: 12, username: "antfu" },

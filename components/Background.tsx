@@ -52,7 +52,7 @@ export default function Background() {
 
                     const dotSize = 0.8 + strength * 1.4;
                     // Refined zinc-400 / zinc-100 style dots matching the dark theme
-                    const opacity = 0.08 + strength * 0.45;
+                    const opacity = 0.1 + strength * 0.45;
 
                     ctx.beginPath();
                     ctx.arc(x, y, dotSize, 0, Math.PI * 2);
