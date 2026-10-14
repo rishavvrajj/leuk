@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getPortfolio, UserNotFoundError } from "@/lib/github";
-import StatCard from "@/components/StatCard";
-import LanguageBars from "@/components/LanguageBars";
-import RepoCard from "@/components/RepoCard";
-import RefreshButton from "@/components/RefreshButton";
-import Background from "@/components/Background";
-import Calendar from "@/components/Calendar";
-import SocialShare from "@/components/SocialShare";
-import Share from "@/components/Share";
+import { StatCard } from "@/components/user/StatCard";
+import LanguageBars from "@/components/user/LanguageBars";
+import RepoCard from "@/components/user/RepoCard";
+import Background from "@/components/user/Background";
+import Calendar from "@/components/user/Calendar";
+import SocialShare from "@/components/user/SocialShare";
+import Share from "@/components/user/Share";
 
 const nf = new Intl.NumberFormat("en-US");
 

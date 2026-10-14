@@ -3,7 +3,7 @@ interface StatCardProps {
   value: number | string;
 }
 
-export default function StatCard({ label, value }: StatCardProps) {
+export function StatCard({ label, value }: StatCardProps) {
   return (
     <div className="px-2 border-l-2 border-zinc-800/60">
       <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">

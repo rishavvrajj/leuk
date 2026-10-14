@@ -4,13 +4,8 @@ import { useEffect, useState } from 'react'
 import { GitHubCalendar } from 'react-github-calendar'
 
 export default function Calendar({ username }: { username: string }) {
-    const [mounted, setMounted] = useState(false)
     const [fontSize, setFontSize] = useState(12)
     const [blockSize, setBlockSize] = useState(9.9)
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
 
     useEffect(() => {
         const updateSize = () => {
@@ -43,10 +38,6 @@ export default function Calendar({ username }: { username: string }) {
         window.addEventListener('resize', updateSize)
         return () => window.removeEventListener('resize', updateSize)
     }, [])
-
-    if (!mounted) {
-        return <div className="min-h-[140px] w-full" />
-    }
 
     return (
         <div className='w-full overflow-clip'>
