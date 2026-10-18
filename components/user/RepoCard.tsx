@@ -1,5 +1,6 @@
 import type { Repo } from "@/lib/github";
 import { languageColor } from "@/lib/colors";
+import { ExternalLinkIcon } from "@/components/ui/ExternalLinkIcon";
 
 export default function RepoCard({ repo }: { repo: Repo }) {
   const color = languageColor(repo.language);
@@ -14,16 +15,7 @@ export default function RepoCard({ repo }: { repo: Repo }) {
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-sm font-medium text-zinc-100 group-hover:text-white transition-colors flex items-center gap-1.5 truncate">
           <span className="truncate">{repo.name}</span>
-          <svg
-            aria-hidden="true"
-            className="h-3 w-3 shrink-0 text-zinc-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-300"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M7 17 17 7M7 7h10v10" />
-          </svg>
+          <ExternalLinkIcon className="h-3 w-3 shrink-0 text-zinc-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-300" />
         </h3>
         {repo.isArchived && (
           <span className="shrink-0 text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-500">

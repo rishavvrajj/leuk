@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { getPortfolio, UserNotFoundError } from "@/lib/github";
 import { StatCard } from "@/components/user/StatCard";
 import LanguageBars from "@/components/user/LanguageBars";
@@ -9,6 +10,8 @@ import Background from "@/components/user/Background";
 import Calendar from "@/components/user/Calendar";
 import SocialShare from "@/components/user/SocialShare";
 import Share from "@/components/user/Share";
+import RefreshButton from "@/components/user/RefreshButton";
+import { ExternalLinkIcon } from "@/components/ui/ExternalLinkIcon";
 
 const nf = new Intl.NumberFormat("en-US");
 
@@ -92,7 +95,14 @@ export default async function PortfolioPage({ params }: Props) {
       <div className="mx-auto w-full max-w-3xl border border-zinc-800/60">
 
         {/* Top Navigation Bar */}
-        <div className="flex items-center justify-between border-b border-zinc-800/60 px-4 py-4">
+        <div className="flex items-center justify-between border-b border-zinc-800/60 px-4 py-3">
+          <Link
+            href="/"
+            className="font-mono text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+          >
+            ← Home
+          </Link>
+          <RefreshButton username={portfolio.username} />
         </div>
 
         {/* Background */}
@@ -243,16 +253,7 @@ export default async function PortfolioPage({ params }: Props) {
               </span>
               <span className="flex items-center gap-1 font-mono text-xs text-zinc-500 group-hover:text-zinc-300">
                 github.com/{portfolio.username}
-                <svg
-                  aria-hidden="true"
-                  className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M7 17 17 7M7 7h10v10" />
-                </svg>
+                <ExternalLinkIcon className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </span>
             </a>
             {portfolio.blog && (
@@ -271,16 +272,7 @@ export default async function PortfolioPage({ params }: Props) {
                 </span>
                 <span className="flex items-center gap-1 font-mono text-xs text-zinc-500 group-hover:text-zinc-300 truncate max-w-[200px] sm:max-w-xs">
                   {portfolio.blog.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                  <svg
-                    aria-hidden="true"
-                    className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M7 17 17 7M7 7h10v10" />
-                  </svg>
+                  <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
               </a>
             )}
@@ -296,16 +288,7 @@ export default async function PortfolioPage({ params }: Props) {
                 </span>
                 <span className="flex items-center gap-1 font-mono text-xs text-zinc-500 group-hover:text-zinc-300">
                   @{portfolio.twitterUsername}
-                  <svg
-                    aria-hidden="true"
-                    className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M7 17 17 7M7 7h10v10" />
-                  </svg>
+                  <ExternalLinkIcon className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
               </a>
             )}

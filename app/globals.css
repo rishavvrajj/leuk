@@ -19,9 +19,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --font-pally: "Pally", sans-serif;
+  --font-satoshi: "Satoshi", sans-serif;
+}
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pally";
+  src: url("/fonts/Pally-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }

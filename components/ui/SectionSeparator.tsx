@@ -1,5 +1,5 @@
 export function SectionSeparator() {
-  const line = "from-neutral-200 dark:from-neutral-800 via-neutral-300 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20";
+  const line = "from-neutral-100 dark:from-neutral-800 via-neutral-400 dark:via-neutral-400 to-neutral-100 dark:to-neutral-800 z-100";
 
   return (
     <div className="relative flex h-8 w-full bg-neutral-100/60 dark:bg-neutral-950/30">
