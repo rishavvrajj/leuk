@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { Sparkles } from "lucide-react";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 
 export function Hero() {
-  const [userName, setUserName] = useState('');
 
   return (
     <div className="relative w-full flex h-160">
@@ -20,10 +17,10 @@ export function Hero() {
             A living developer profile
           </p>
 
-          <h1 className="text-balance text-3xl w-4xl font-light leading-[1.1] tracking-tighter text-neutral-950 sm:text-6xl md:text-7xl dark:text-neutral-50">
+          <h1 className="text-3xl w-4xl font-extralight leading-[1.1] tracking-tighter text-neutral-950 sm:text-6xl md:text-7xl dark:text-neutral-50">
             Your work is already speaking.
-            <span className="block text-neutral-500 italic dark:text-neutral-400">
-              Let it be heard.
+            <span className="block text-neutral-500 italic dark:text-neutral-600">
+              Let it be <span className="text-emerald-400">heard.</span>
             </span>
           </h1>
 

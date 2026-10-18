@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { LucideGitBranchPlus, Terminal, RefreshCw, Lock } from "lucide-react";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 
 export function Features() {
-  const [userName, setUserName] = useState('');
-
   const features = [
     {
       icon: LucideGitBranchPlus,

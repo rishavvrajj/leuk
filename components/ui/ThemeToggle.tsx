@@ -1,8 +1,23 @@
+"use client";
+
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="inline-flex h-8 w-8 items-center justify-center border border-neutral-300 dark:border-neutral-700" />
+    );
+  }
 
   const isDark = resolvedTheme === "dark";
 
