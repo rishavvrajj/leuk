@@ -11,22 +11,33 @@ import { Profiles } from "@/components/page/Profiles";
 import { FinalCta } from "@/components/page/FinalCta";
 import { Footer } from "@/components/page/Footer";
 import { Pattern } from "@/components/ui/Pattern";
+import { SectionSeparator } from "@/components/ui/SectionSeparator";
 
 export default function Home() {
   return (
     <main className="relative flex w-full flex-col items-center">
       <Pattern />
 
-      <div className="z-10 my-4 flex w-full max-w-7xl flex-col items-center space-y-8">
+      <div className="z-10 flex w-full flex-col items-center">
+        <SectionSeparator />
         <NavBar />
+        <SectionSeparator />
         <Hero />
+        <SectionSeparator />
         <SocialProof />
+        <SectionSeparator />
         <Problem />
+        <SectionSeparator />
         <HowItWorks />
+        <SectionSeparator />
         <Features />
+        <SectionSeparator />
         <Beliefs />
+        <SectionSeparator />
         <Profiles />
+        <SectionSeparator />
         <FinalCta />
+        <SectionSeparator />
         <Footer />
       </div>
     </main>

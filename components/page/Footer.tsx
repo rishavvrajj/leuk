@@ -10,44 +10,46 @@ export function Footer() {
   ];
 
   return (
-    <footer className="w-full border border-neutral-200 bg-white px-4 py-10 sm:px-6 dark:border-neutral-800 dark:bg-neutral-950">
-      <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-        <div>
-          <p className="font-mono text-lg font-semibold tracking-tight text-neutral-950 dark:text-neutral-50">
-            Leuk
-          </p>
-          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-            Your work, made visible.
-          </p>
+    <div className="relative w-full flex">
+      <div className="absolute h-full w-full pointer-events-none">
+        <div className="absolute w-full h-px top-0 bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 z-100"></div>
+        <div className="absolute w-full h-px bottom-0 bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 z-100"></div>
+      </div>
+      <div className="w-full h-full bg-neutral-100/60 dark:bg-neutral-950/30"></div>
+      <footer className="relative min-w-7xl border border-neutral-200/80 bg-white/95 backdrop-blur-md w-full px-4 py-4 sm:px-6 dark:border-neutral-800 dark:bg-neutral-950/95">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <p className="font-mono text-lg font-semibold tracking-tight text-neutral-950 dark:text-neutral-50">
+              Leuk
+            </p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Your work, made visible.
+            </p>
+          </div>
+
+          <nav aria-label="Footer navigation">
+            <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              {links.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noreferrer noopener"
+                        : undefined
+                    }
+                    className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-
-        <nav aria-label="Footer navigation">
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            {links.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    link.href.startsWith("http")
-                      ? "noreferrer noopener"
-                      : undefined
-                  }
-                  className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-
-      <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-        <p className="font-mono text-xs text-neutral-500 dark:text-neutral-500">
-          © 2026 Leuk.
-        </p>
-      </div>
-    </footer>
+      </footer>
+      <div className="w-full h-full bg-neutral-100/60 dark:bg-neutral-950/30"></div>
+    </div>
   );
 }

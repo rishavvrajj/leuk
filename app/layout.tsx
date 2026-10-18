@@ -55,7 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased [--pattern-fg:var(--color-neutral-800)] dark:[--pattern-fg:var(--color-neutral-200)]`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased [--pattern-fg:var(--color-neutral-200)] dark:[--pattern-fg:var(--color-neutral-900)]`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider
