@@ -6,13 +6,13 @@ export function Hero() {
   return (
     <div className="relative w-full flex h-160">
       <div className="absolute h-full w-full pointer-events-none">
-        <div className="absolute w-full h-px top-0 bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 z-100"></div>
-        <div className="absolute w-full h-px bottom-0 bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 z-100"></div>
+        <div className="absolute w-full h-px top-0 bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-300 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20 z-100"></div>
+        <div className="absolute w-full h-px bottom-0 bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-300 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20 z-100"></div>
       </div>
       <div className="w-full h-full bg-neutral-100/60 dark:bg-neutral-950/30"></div>
-      <SectionShell id="Home" className="relative min-w-7xl bg-white/95 backdrop-blur dark:bg-neutral-950/95 flex items-center ">
+      <SectionShell id="Home" className="relative min-w-7xl bg-neutral-100/95 backdrop-blur dark:bg-neutral-950/95 flex items-center ">
         <div className="mx-auto max-w-4xl text-center space-y-6">
-          <p className="inline-flex items-center gap-4 border border-neutral-200/80 bg-neutral-50/50 px-3.5 py-1 rounded-xl font-mono text-xs capitalize tracking-widest text-neutral-600 shadow-2xs dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-400">
+          <p className="inline-flex items-center gap-4 bg-neutral-50 px-3.5 py-1 rounded-xl font-mono text-xs capitalize tracking-widest text-neutral-600 shadow-lg border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden="true" />
             A living developer profile
           </p>
@@ -37,7 +37,7 @@ export function Hero() {
           </p>
         </div>
       </SectionShell>
-      <div className="w-full h-full bg-neutral-100 dark:bg-neutral-950/30"></div>
+      <div className="w-full h-full bg-neutral-100/60 dark:bg-neutral-950/30"></div>
     </div>
   );
 }

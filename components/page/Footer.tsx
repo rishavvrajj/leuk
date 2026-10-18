@@ -10,13 +10,13 @@ export function Footer() {
   ];
 
   return (
-    <div className="relative w-full flex">
+    <div className="relative w-full flex bg-neutral-100/60 dark:bg-neutral-950/30">
       <div className="absolute h-full w-full pointer-events-none">
-        <div className="absolute w-full h-px top-0 bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 z-100"></div>
-        <div className="absolute w-full h-px bottom-0 bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 z-100"></div>
+        <div className="absolute w-full h-px top-0 bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-300 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20 z-100"></div>
+        <div className="absolute w-full h-px bottom-0 bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-300 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20 z-100"></div>
       </div>
       <div className="w-full h-full bg-neutral-100/60 dark:bg-neutral-950/30"></div>
-      <footer className="relative min-w-7xl border border-neutral-200/80 bg-white/95 backdrop-blur-md w-full px-4 py-4 sm:px-6 dark:border-neutral-800 dark:bg-neutral-950/95">
+      <footer className="relative min-w-7xl border border-neutral-200/80 bg-neutral-100/95 backdrop-blur-md w-full px-4 py-4 sm:px-6 dark:border-neutral-800 dark:bg-neutral-950/95">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <p className="font-mono text-lg font-semibold tracking-tight text-neutral-950 dark:text-neutral-50">
