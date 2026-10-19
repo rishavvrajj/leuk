@@ -28,17 +28,21 @@ export default function CompareSearch() {
   ];
 
   return (
-    <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+    <main className="relative flex w-full flex-col items-center overflow-hidden bg-neutral-100 dark:bg-neutral-950 font-sans">
       <Pattern />
 
-      <div className="z-10 flex w-full flex-col items-center">
+      <div className="z-10 flex w-full h-full flex-col items-center">
         <div>
           <SectionSeparator />
           <AnalyticsNavBar />
         </div>
 
         <SectionSeparator />
-        <SectionShell className="flex items-center w-full" contentClassName="flex items-center justify-center p-6 sm:p-12 w-full">
+        <SectionShell
+          containerClassName="h-[calc(100vh-10rem)] w-full"
+          className="flex w-full h-full"
+          contentClassName="mx-auto flex w-full max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8"
+        >
           <div className="max-w-2xl w-full mx-auto space-y-6">
             <div className="text-center space-y-2">
               <h2 className="text-xl sm:text-2xl font-bold text-neutral-950 dark:text-white font-sans">
