@@ -1,55 +1,102 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Terminal, BarChart2, GitCompare, ArrowLeft } from "lucide-react";
-import { SectionShell } from "@/components/ui/SectionShell";
+import { Terminal, BarChart2, GitCompare, Menu, X, ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { SectionShell } from "@/components/ui/SectionShell";
 
 export function AnalyticsNavBar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <SectionShell
-      as="header"
-      containerClassName="sticky top-0 z-200 h-16 border-b border-neutral-200 bg-neutral-900/90 backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-950/90"
-      contentClassName="flex items-center justify-between h-full w-full px-4 sm:px-8"
-    >
-      <div className="flex items-center gap-8">
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight text-white transition-colors hover:text-neutral-300"
-        >
-          <Terminal size={18} aria-hidden="true" />
-          <span>Leuk <span className="text-emerald-400 font-mono text-xs px-1.5 py-0.5 bg-emerald-950/85 border border-emerald-800 rounded">Analytics</span></span>
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-6">
+    <>
+      <SectionShell
+        as="header"
+        containerClassName="sticky top-4 z-200 h-14"
+        contentClassName="flex items-center justify-between h-full w-full px-4 sm:px-8"
+      >
+        <div className="flex items-center justify-between gap-12 lg:gap-24">
           <Link
-            href="/analyze"
-            className="flex items-center gap-1.5 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+            href="/"
+            className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight text-neutral-950 dark:text-neutral-50"
           >
-            <BarChart2 size={14} className="text-emerald-400" />
-            <span>Analyze</span>
+            <Terminal size={18} aria-hidden="true" />
+            Leuk
           </Link>
+
+          {/* <div className="hidden items-center gap-8 md:flex">
+            <Link
+              href="/analyze"
+              className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+            >
+              <BarChart2 size={15} className="text-emerald-500" />
+              <span>Analyze</span>
+            </Link>
+            <Link
+              href="/compare"
+              className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+            >
+              <GitCompare size={15} className="text-emerald-500" />
+              <span>Compare</span>
+            </Link>
+          </div> */}
+        </div>
+
+        <div className="flex items-center gap-2">
           <Link
-            href="/compare"
-            className="flex items-center gap-1.5 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+            href="/"
+            className="hidden min-h-8 items-center gap-1.5 border border-neutral-300 bg-white px-3 text-xs font-mono text-neutral-700 transition-colors hover:border-neutral-950 hover:text-neutral-950 sm:inline-flex dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-50 dark:hover:text-neutral-50 rounded-xs"
           >
-            <GitCompare size={14} className="text-emerald-400" />
-            <span>Compare</span>
+            <ArrowLeft size={13} />
+            <span>Portfolio</span>
           </Link>
-        </nav>
-      </div>
 
-      <div className="flex items-center gap-3">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 hover:text-white transition-colors px-3 py-1.5 rounded border border-neutral-800 bg-neutral-900"
+          <ThemeToggle />
+
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            className="inline-flex h-10 w-10 items-center justify-center border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:text-neutral-950 md:hidden dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:text-neutral-50 rounded-xs"
+          >
+            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+          </button>
+        </div>
+      </SectionShell>
+      {open && (
+        <div
+          id="mobile-navigation"
+          className="absolute top-14 left-0 w-full bg-neutral-100/95 backdrop-blur-md border-b border-neutral-200 p-4 md:hidden dark:bg-neutral-950/95 dark:border-neutral-800 z-300 shadow-lg"
         >
-          <ArrowLeft size={13} />
-          <span>Back to Portfolio</span>
-        </Link>
-
-        <ThemeToggle />
-      </div>
-    </SectionShell>
+          <div className="flex flex-col gap-3">
+            <Link
+              href="/analyze"
+              onClick={() => setOpen(false)}
+              className="text-sm font-medium text-neutral-700 dark:text-neutral-300 py-1"
+            >
+              Analyze
+            </Link>
+            <Link
+              href="/compare"
+              onClick={() => setOpen(false)}
+              className="text-sm font-medium text-neutral-700 dark:text-neutral-300 py-1"
+            >
+              Compare
+            </Link>
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex min-h-9 items-center justify-center gap-1.5 border border-neutral-300 bg-white px-4 text-xs font-mono text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+            >
+              <ArrowLeft size={13} />
+              <span>Back to Portfolio</span>
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

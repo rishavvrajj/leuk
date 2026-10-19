@@ -4,6 +4,10 @@ import { useEffect, useState, use } from "react";
 import { ComparisonResult } from "@/lib/analytics-types";
 import { AnalyticsNavBar } from "@/components/analytics/AnalyticsNavBar";
 import { ComparisonTable } from "@/components/analytics/ComparisonTable";
+import { Footer } from "@/components/page/Footer";
+import { Pattern } from "@/components/ui/Pattern";
+import { SectionSeparator } from "@/components/ui/SectionSeparator";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { AlertCircle, Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -44,13 +48,21 @@ export default function CompareDashboardPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col font-sans">
-        <AnalyticsNavBar />
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <Loader2 size={36} className="animate-spin text-emerald-400" />
-          <p className="text-xs font-mono text-neutral-400">
-            Analyzing and comparing @{left} and @{right}...
-          </p>
+      <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+        <Pattern />
+        <div className="z-10 flex w-full flex-col items-center">
+          <SectionSeparator />
+          <AnalyticsNavBar />
+          <SectionSeparator />
+          <SectionShell contentClassName="flex flex-col items-center justify-center p-16 sm:p-24 min-h-[50vh]">
+            <Loader2 size={36} className="animate-spin text-emerald-500 mb-4" />
+            <p className="text-xs font-mono text-neutral-600 dark:text-neutral-400">
+              Analyzing and comparing @{left} and @{right}...
+            </p>
+          </SectionShell>
+          <SectionSeparator />
+          <Footer />
+          <SectionSeparator />
         </div>
       </main>
     );
@@ -58,46 +70,55 @@ export default function CompareDashboardPage({ params }: PageProps) {
 
   if (error || !comparison) {
     return (
-      <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col font-sans">
-        <AnalyticsNavBar />
-        <div className="flex-1 flex flex-col items-center justify-center p-4">
-          <div className="max-w-md w-full rounded-3xl border border-neutral-800 bg-neutral-900 p-8 text-center space-y-4 shadow-2xl">
-            <div className="h-12 w-12 rounded-2xl bg-rose-950 border border-rose-800 text-rose-400 flex items-center justify-center mx-auto">
-              <AlertCircle size={24} />
+      <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+        <Pattern />
+        <div className="z-10 flex w-full flex-col items-center">
+          <SectionSeparator />
+          <AnalyticsNavBar />
+          <SectionSeparator />
+          <SectionShell contentClassName="flex flex-col items-center justify-center p-8 sm:p-16">
+            <div className="max-w-md w-full rounded-xs border border-neutral-200/80 bg-white p-8 text-center space-y-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="h-12 w-12 rounded-xs bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mx-auto dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-400">
+                <AlertCircle size={24} />
+              </div>
+              <h2 className="text-lg font-bold font-sans text-neutral-950 dark:text-neutral-50">Comparison Failed</h2>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                {error || `Could not compare @${left} and @${right}. Please check the usernames or rate limits.`}
+              </p>
+              <div className="pt-4 flex items-center justify-center">
+                <Link
+                  href="/compare"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xs bg-neutral-950 text-white hover:bg-neutral-800 text-xs font-mono transition-colors dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
+                >
+                  <ArrowLeft size={14} /> Try Another Pair
+                </Link>
+              </div>
             </div>
-            <h2 className="text-lg font-bold font-mono text-white">Comparison Failed</h2>
-            <p className="text-xs text-neutral-400 leading-relaxed font-sans">
-              {error || `Could not compare @${left} and @${right}. Please check the usernames or rate limits.`}
-            </p>
-            <div className="pt-4 flex items-center justify-center">
-              <Link
-                href="/compare"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-mono text-neutral-200 transition-colors"
-              >
-                <ArrowLeft size={14} /> Try Another Pair
-              </Link>
-            </div>
-          </div>
+          </SectionShell>
+          <SectionSeparator />
+          <Footer />
+          <SectionSeparator />
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col selection:bg-emerald-500 selection:text-neutral-950 font-sans">
-      <AnalyticsNavBar />
+    <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+      <Pattern />
 
-      <div className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 space-y-8">
-        <div className="rounded-3xl border border-neutral-800 bg-neutral-900/90 p-6 sm:p-8 shadow-xl backdrop-blur-xl">
-          <h1 className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight mb-2">
-            Side-by-Side Comparison: @{left} vs @{right}
-          </h1>
-          <p className="text-xs font-mono text-neutral-400">
-            {comparison.summaryComparison}
-          </p>
-        </div>
+      <div className="z-10 flex w-full flex-col items-center">
+        <SectionSeparator />
+        <AnalyticsNavBar />
 
-        <ComparisonTable comparison={comparison} />
+        <SectionSeparator />
+        <SectionShell contentClassName="p-6 sm:p-12 space-y-8">
+          <ComparisonTable comparison={comparison} />
+        </SectionShell>
+
+        <SectionSeparator />
+        <Footer />
+        <SectionSeparator />
       </div>
     </main>
   );

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ComparisonResult } from "@/lib/analytics-types";
 import Image from "next/image";
+import Link from "next/link";
 import { Star, GitFork, Award, Activity, Cpu, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 interface ComparisonTableProps {
@@ -26,20 +27,16 @@ export function ComparisonTable({ comparison }: ComparisonTableProps) {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {/* Side by Side Header Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {[left, right].map((dev, idx) => (
           <div
             key={dev.username}
-            className="rounded-3xl border border-neutral-800 bg-neutral-900/90 p-6 shadow-xl backdrop-blur-xl relative overflow-hidden flex flex-col justify-between"
+            className="relative overflow-hidden flex flex-col justify-between"
           >
-            <div className="absolute top-0 right-0 px-4 py-1.5 bg-neutral-800 text-[11px] font-mono text-neutral-300 rounded-bl-2xl border-l border-b border-neutral-700">
-              Candidate #{idx + 1}
-            </div>
-
             <div className="flex items-center gap-4 mb-6">
-              <div className="relative h-16 w-16 overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-800">
+              <div className="relative h-16 w-16 overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800">
                 <Image
                   src={dev.avatarUrl}
                   alt={dev.name || dev.username}
@@ -48,74 +45,79 @@ export function ComparisonTable({ comparison }: ComparisonTableProps) {
                 />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white font-mono">
+                <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-wider mb-0.5">
+                  Candidate #{idx + 1}
+                </div>
+                <h3 className="text-lg font-bold text-neutral-950 dark:text-white font-sans">
                   {dev.name || dev.username}
                 </h3>
-                <span className="text-xs font-mono text-neutral-400">
+                <span className="text-xs font-mono text-neutral-500">
                   @{dev.username}
                 </span>
-                <div className="flex items-center gap-3 mt-1 text-xs font-mono text-neutral-400">
+                <div className="flex items-center gap-3 mt-1 text-xs font-mono text-neutral-500">
                   <span>{dev.followers} followers</span>
                   <span>{dev.publicRepos} repos</span>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-neutral-950/70 border border-neutral-800 mb-6">
+            <div className="grid grid-cols-3 gap-3 py-4 border-y border-neutral-200 dark:border-neutral-800 mb-6">
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-mono uppercase text-neutral-500">Score</span>
-                <span className="text-2xl font-black font-mono text-white mt-0.5">
+                <span className="text-2xl font-black font-mono text-neutral-950 dark:text-white mt-0.5">
                   {dev.leukAnalyticsScore}
                 </span>
-                <span className="text-[10px] font-mono text-emerald-400">Grade {dev.letterGrade}</span>
+                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">Grade {dev.letterGrade}</span>
               </div>
-              <div className="flex flex-col items-center border-x border-neutral-800 px-2">
+              <div className="flex flex-col items-center border-x border-neutral-200 dark:border-neutral-800 px-2">
                 <span className="text-[10px] font-mono uppercase text-neutral-500">Stars</span>
-                <span className="text-xl font-bold font-mono text-amber-400 mt-0.5">
+                <span className="text-xl font-bold font-mono text-amber-600 dark:text-amber-400 mt-0.5">
                   {dev.totalStars}
                 </span>
                 <span className="text-[10px] font-mono text-neutral-500">Total Impact</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-mono uppercase text-neutral-500">Consistency</span>
-                <span className="text-xl font-bold font-mono text-cyan-400 mt-0.5">
+                <span className="text-xl font-bold font-mono text-cyan-600 dark:text-cyan-400 mt-0.5">
                   {dev.scoreBreakdown.consistency.score}
                 </span>
                 <span className="text-[10px] font-mono text-neutral-500">/100</span>
               </div>
             </div>
 
-            <a
+            <Link
               href={`/analyze/${dev.username}`}
-              className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 bg-neutral-800 text-xs font-mono text-white hover:bg-neutral-700 transition-colors"
+              className="text-xs font-mono text-neutral-950 dark:text-white font-bold hover:underline inline-flex items-center gap-1"
             >
               <span>View Full Analytics Dashboard →</span>
-            </a>
+            </Link>
           </div>
         ))}
       </div>
 
+      <div className="h-px w-full bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-400 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20"/>
+
       {/* Role Fit Filter Section */}
-      <div className="rounded-3xl border border-neutral-800 bg-neutral-900/90 p-6 sm:p-8 shadow-xl backdrop-blur-xl">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-neutral-800">
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-neutral-200 dark:border-neutral-800">
           <div>
-            <h3 className="text-lg font-bold text-white font-mono tracking-tight">
+            <h3 className="text-xl font-bold text-neutral-950 dark:text-white font-sans tracking-tight">
               Role-Fit & Stack Comparison
             </h3>
-            <p className="text-xs text-neutral-400 font-mono mt-0.5">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono mt-0.5">
               Select a target engineering profile to compare capability alignment
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 bg-neutral-950 p-1 rounded-xl border border-neutral-800">
+          <div className="flex flex-wrap items-center gap-1.5 bg-neutral-100 dark:bg-neutral-900 p-1 rounded-xl border border-neutral-200 dark:border-neutral-800">
             {roleLabels.map(({ key, label }) => (
               <button
                 key={key}
                 onClick={() => setSelectedRole(key)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
                   selectedRole === key
-                    ? "bg-emerald-500 text-neutral-950 font-bold"
-                    : "text-neutral-400 hover:text-white"
+                    ? "bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 font-bold"
+                    : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
                 }`}
               >
                 {label}
@@ -126,65 +128,65 @@ export function ComparisonTable({ comparison }: ComparisonTableProps) {
 
         {/* Role fit comparison bars */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <div className="space-y-4 bg-neutral-950/70 p-5 rounded-2xl border border-neutral-800">
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-bold text-white font-mono">
+              <span className="text-sm font-bold text-neutral-950 dark:text-white font-sans">
                 {left.name || left.username}
               </span>
-              <span className="text-sm font-bold text-emerald-400 font-mono">
+              <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                 {left.roleFit[selectedRole]} / 100
               </span>
             </div>
-            <div className="h-3 w-full rounded-full bg-neutral-800 overflow-hidden">
+            <div className="h-3 w-full rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
               <div
                 className="h-full bg-emerald-500 rounded-full transition-all"
                 style={{ width: `${left.roleFit[selectedRole]}%` }}
               />
             </div>
-            <div className="text-[11px] font-mono text-neutral-400">
+            <div className="text-[11px] font-mono text-neutral-500">
               Alignment score for {roleLabels.find((r) => r.key === selectedRole)?.label} role based on language breakdown and repository topics.
             </div>
           </div>
 
-          <div className="space-y-4 bg-neutral-950/70 p-5 rounded-2xl border border-neutral-800">
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-bold text-white font-mono">
+              <span className="text-sm font-bold text-neutral-950 dark:text-white font-sans">
                 {right.name || right.username}
               </span>
-              <span className="text-sm font-bold text-cyan-400 font-mono">
+              <span className="text-sm font-bold text-cyan-600 dark:text-cyan-400 font-mono">
                 {right.roleFit[selectedRole]} / 100
               </span>
             </div>
-            <div className="h-3 w-full rounded-full bg-neutral-800 overflow-hidden">
+            <div className="h-3 w-full rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
               <div
                 className="h-full bg-cyan-500 rounded-full transition-all"
                 style={{ width: `${right.roleFit[selectedRole]}%` }}
               />
             </div>
-            <div className="text-[11px] font-mono text-neutral-400">
+            <div className="text-[11px] font-mono text-neutral-500">
               Alignment score for {roleLabels.find((r) => r.key === selectedRole)?.label} role based on language breakdown and repository topics.
             </div>
           </div>
         </div>
 
         {/* Contextual Conclusion Box */}
-        <div className="rounded-2xl border border-emerald-800/80 bg-emerald-950/30 p-6">
-          <h4 className="text-sm font-bold text-emerald-400 font-mono mb-2 flex items-center gap-2">
+        <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+          <h4 className="text-sm font-bold text-neutral-950 dark:text-white font-sans flex items-center gap-2">
             <span>⚖️ Contextual Comparison Conclusion</span>
           </h4>
-          <p className="text-xs text-neutral-300 font-sans leading-relaxed mb-4">
+          <p className="text-xs text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed">
             {comparison.recommendations.contextualConclusion}
           </p>
-          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-emerald-900/50 text-[11px] font-mono text-neutral-400">
-            <span className="text-neutral-300 font-bold">Language Overlap:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-2 text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+            <span className="text-neutral-950 dark:text-white font-bold">Language Overlap:</span>
             {comparison.languageOverlap.length > 0 ? (
               comparison.languageOverlap.map((lang) => (
-                <span key={lang} className="px-2 py-0.5 rounded bg-neutral-900 text-emerald-300 border border-neutral-800">
+                <span key={lang} className="px-2.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-800">
                   {lang}
                 </span>
               ))
             ) : (
-              <span className="text-neutral-500">None (Disjoint stacks)</span>
+              <span className="text-neutral-400">None (Disjoint stacks)</span>
             )}
           </div>
         </div>

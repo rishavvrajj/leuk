@@ -9,7 +9,11 @@ import { ActivityChart } from "@/components/analytics/ActivityChart";
 import { LanguageAllocation } from "@/components/analytics/LanguageAllocation";
 import { TopRepositories } from "@/components/analytics/TopRepositories";
 import { RecruiterInsights } from "@/components/analytics/RecruiterInsights";
-import { Terminal, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
+import { Footer } from "@/components/page/Footer";
+import { Pattern } from "@/components/ui/Pattern";
+import { SectionSeparator } from "@/components/ui/SectionSeparator";
+import { SectionShell } from "@/components/ui/SectionShell";
+import { AlertCircle, Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 interface PageProps {
@@ -53,13 +57,21 @@ export default function AnalyticsDashboardPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col font-sans">
-        <AnalyticsNavBar />
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <Loader2 size={36} className="animate-spin text-emerald-400" />
-          <p className="text-xs font-mono text-neutral-400">
-            Analyzing public GitHub signals for @{username}...
-          </p>
+      <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+        <Pattern />
+        <div className="z-10 flex w-full flex-col items-center">
+          <SectionSeparator />
+          <AnalyticsNavBar />
+          <SectionSeparator />
+          <SectionShell contentClassName="flex flex-col items-center justify-center p-16 sm:p-24 min-h-[50vh]">
+            <Loader2 size={36} className="animate-spin text-emerald-500 mb-4" />
+            <p className="text-xs font-mono text-neutral-600 dark:text-neutral-400">
+              Analyzing public GitHub signals for @{username}...
+            </p>
+          </SectionShell>
+          <SectionSeparator />
+          <Footer />
+          <SectionSeparator />
         </div>
       </main>
     );
@@ -67,52 +79,79 @@ export default function AnalyticsDashboardPage({ params }: PageProps) {
 
   if (error || !analytics) {
     return (
-      <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col font-sans">
-        <AnalyticsNavBar />
-        <div className="flex-1 flex flex-col items-center justify-center p-4">
-          <div className="max-w-md w-full rounded-3xl border border-neutral-800 bg-neutral-900 p-8 text-center space-y-4 shadow-2xl">
-            <div className="h-12 w-12 rounded-2xl bg-rose-950 border border-rose-800 text-rose-400 flex items-center justify-center mx-auto">
-              <AlertCircle size={24} />
+      <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+        <Pattern />
+        <div className="z-10 flex w-full flex-col items-center">
+          <SectionSeparator />
+          <AnalyticsNavBar />
+          <SectionSeparator />
+          <SectionShell contentClassName="flex flex-col items-center justify-center p-8 sm:p-16">
+            <div className="max-w-md w-full rounded-xs border border-neutral-200/80 bg-white p-8 text-center space-y-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="h-12 w-12 rounded-xs bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mx-auto dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-400">
+                <AlertCircle size={24} />
+              </div>
+              <h2 className="text-lg font-bold font-sans text-neutral-950 dark:text-neutral-50">Analytics Generation Failed</h2>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                {error || `Could not generate analytics for @${username}. Please check the username or API rate limits.`}
+              </p>
+              <div className="pt-4 flex items-center justify-center">
+                <Link
+                  href="/analyze"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xs bg-neutral-950 text-white hover:bg-neutral-800 text-xs font-mono transition-colors dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
+                >
+                  <ArrowLeft size={14} /> Try Another Username
+                </Link>
+              </div>
             </div>
-            <h2 className="text-lg font-bold font-mono text-white">Analytics Generation Failed</h2>
-            <p className="text-xs text-neutral-400 leading-relaxed font-sans">
-              {error || `Could not generate analytics for @${username}. Please check the username or API rate limits.`}
-            </p>
-            <div className="pt-4 flex items-center justify-center gap-3">
-              <Link
-                href="/analyze"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-mono text-neutral-200 transition-colors"
-              >
-                <ArrowLeft size={14} /> Try Another Username
-              </Link>
-            </div>
-          </div>
+          </SectionShell>
+          <SectionSeparator />
+          <Footer />
+          <SectionSeparator />
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col selection:bg-emerald-500 selection:text-neutral-950 font-sans">
-      <AnalyticsNavBar />
+    <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+      <Pattern />
 
-      <div className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 space-y-8">
-        <AnalyticsHeader
-          analytics={analytics}
-          onRefresh={() => fetchAnalytics(true)}
-          isRefreshing={refreshing}
-        />
+      <div className="z-10 flex w-full flex-col items-center">
+        <SectionSeparator />
+        <AnalyticsNavBar />
 
-        <ScoreBreakdown scoreBreakdown={analytics.scoreBreakdown} />
+        <SectionSeparator />
+        <SectionShell contentClassName="p-6 sm:p-12 space-y-16">
+          <AnalyticsHeader
+            analytics={analytics}
+            onRefresh={() => fetchAnalytics(true)}
+            isRefreshing={refreshing}
+          />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="h-px w-full bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-400 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20"/>
+
+          <ScoreBreakdown scoreBreakdown={analytics.scoreBreakdown} />
+
+          <div className="h-px w-full bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-400 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20"/>
+
           <ActivityChart metrics={analytics.activityMetrics} username={analytics.username} />
+
+          <div className="h-px w-full bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-400 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20"/>
+
           <LanguageAllocation languageBreakdown={analytics.languageBreakdown} />
-        </div>
 
-        <TopRepositories repos={analytics.repos} />
+          <div className="h-px w-full bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-400 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20"/>
 
-        <RecruiterInsights insights={analytics.recruiterInsights} />
+          <TopRepositories repos={analytics.repos} />
+
+          <div className="h-px w-full bg-linear-to-r from-neutral-200 dark:from-neutral-950/20 via-neutral-400 dark:via-neutral-400 to-neutral-200 dark:to-neutral-950/20"/>
+
+          <RecruiterInsights insights={analytics.recruiterInsights} />
+        </SectionShell>
+
+        <SectionSeparator />
+        <Footer />
+        <SectionSeparator />
       </div>
     </main>
   );

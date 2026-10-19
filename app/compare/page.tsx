@@ -3,9 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnalyticsNavBar } from "@/components/analytics/AnalyticsNavBar";
-import { GitCompare, Terminal, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { Footer } from "@/components/page/Footer";
+import { Pattern } from "@/components/ui/Pattern";
+import { SectionSeparator } from "@/components/ui/SectionSeparator";
+import { SectionShell } from "@/components/ui/SectionShell";
+import { GitCompare, Terminal, ArrowRight } from "lucide-react";
 
-export function CompareSearch() {
+export default function CompareSearch() {
   const [leftUser, setLeftUser] = useState("");
   const [rightUser, setRightUser] = useState("");
   const router = useRouter();
@@ -24,81 +28,71 @@ export function CompareSearch() {
   ];
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col selection:bg-emerald-500 selection:text-neutral-950 font-sans">
-      <AnalyticsNavBar />
+    <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+      <Pattern />
 
-      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 py-16 relative overflow-hidden">
-        {/* Glow effects */}
-        <div className="absolute top-1/3 left-1/3 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
+      <div className="z-10 flex w-full flex-col items-center">
+        <SectionSeparator />
+        <AnalyticsNavBar />
 
-        <div className="relative z-10 max-w-2xl w-full mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900 text-xs font-mono text-emerald-400">
-            <GitCompare size={13} />
-            <span>Side-by-Side Developer Comparison</span>
-          </div>
+        <SectionSeparator />
+        <SectionShell contentClassName="p-8 sm:p-16">
+          <div className="max-w-xl mx-auto space-y-4">
+            <form onSubmit={handleCompare} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center gap-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3 rounded-2xl shadow-sm">
+                  <Terminal size={16} className="text-neutral-400" />
+                  <input
+                    type="text"
+                    value={leftUser}
+                    onChange={(e) => setLeftUser(e.target.value)}
+                    placeholder="First username (e.g. torvalds)"
+                    className="w-full bg-transparent py-1 text-xs sm:text-sm text-neutral-950 dark:text-white focus:outline-none placeholder:text-neutral-400 font-mono"
+                  />
+                </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-mono">
-            GitHub Profile <span className="text-emerald-400">Comparison</span>
-          </h1>
-
-          <p className="text-sm sm:text-base text-neutral-400 max-w-lg mx-auto leading-relaxed">
-            Compare two GitHub developers side by side across consistency, impact, language overlap, and role-fit scores.
-          </p>
-
-          <form onSubmit={handleCompare} className="mt-8 space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 p-3 rounded-2xl shadow-xl">
-                <Terminal size={16} className="text-neutral-500" />
-                <input
-                  type="text"
-                  value={leftUser}
-                  onChange={(e) => setLeftUser(e.target.value)}
-                  placeholder="First username (e.g. torvalds)"
-                  className="w-full bg-transparent py-1 text-sm text-white focus:outline-none placeholder:text-neutral-500 font-mono"
-                />
+                <div className="flex items-center gap-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3 rounded-2xl shadow-sm">
+                  <Terminal size={16} className="text-neutral-400" />
+                  <input
+                    type="text"
+                    value={rightUser}
+                    onChange={(e) => setRightUser(e.target.value)}
+                    placeholder="Second username (e.g. sindresorhus)"
+                    className="w-full bg-transparent py-1 text-xs sm:text-sm text-neutral-950 dark:text-white focus:outline-none placeholder:text-neutral-400 font-mono"
+                  />
+                </div>
               </div>
 
-              <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 p-3 rounded-2xl shadow-xl">
-                <Terminal size={16} className="text-neutral-500" />
-                <input
-                  type="text"
-                  value={rightUser}
-                  onChange={(e) => setRightUser(e.target.value)}
-                  placeholder="Second username (e.g. sindresorhus)"
-                  className="w-full bg-transparent py-1 text-sm text-white focus:outline-none placeholder:text-neutral-500 font-mono"
-                />
+              <button
+                type="submit"
+                className="w-full inline-flex items-center justify-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 font-mono text-xs font-bold px-6 py-3.5 rounded-2xl transition-colors shadow-sm"
+              >
+                <span>Compare Profiles Side-by-Side</span>
+                <ArrowRight size={14} />
+              </button>
+            </form>
+
+            <div className="pt-4 text-center space-y-2">
+              <span className="text-xs font-mono text-neutral-500">Popular comparison pairs:</span>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {presetPairs.map((pair) => (
+                  <button
+                    key={pair.left + pair.right}
+                    onClick={() => router.push(`/compare/${pair.left}/${pair.right}`)}
+                    className="px-3 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-950 dark:hover:border-neutral-50 text-xs font-mono transition-colors"
+                  >
+                    {pair.label}
+                  </button>
+                ))}
               </div>
             </div>
-
-            <button
-              type="submit"
-              className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-mono text-xs font-bold px-6 py-3.5 rounded-2xl transition-colors shadow-lg"
-            >
-              <span>Compare Profiles Side-by-Side</span>
-              <ArrowRight size={14} />
-            </button>
-          </form>
-
-          {/* Preset Pairs */}
-          <div className="pt-6 space-y-2">
-            <span className="text-xs font-mono text-neutral-500">Or try popular comparison pairs:</span>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {presetPairs.map((pair) => (
-                <button
-                  key={pair.left + pair.right}
-                  onClick={() => router.push(`/compare/${pair.left}/${pair.right}`)}
-                  className="px-3 py-1.5 rounded-xl border border-neutral-800 bg-neutral-900 hover:border-neutral-700 hover:text-white text-xs font-mono transition-colors"
-                >
-                  {pair.label}
-                </button>
-              ))}
-            </div>
           </div>
-        </div>
+        </SectionShell>
+
+        <SectionSeparator />
+        <Footer />
+        <SectionSeparator />
       </div>
     </main>
   );
 }
-
-export default CompareSearch;
