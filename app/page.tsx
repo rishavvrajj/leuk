@@ -7,7 +7,6 @@ import { Problem } from "@/components/page/Problem";
 import { HowItWorks } from "@/components/page/HowItWorks";
 import { Features } from "@/components/page/Features";
 import { Beliefs } from "@/components/page/Beliefs";
-import { Profiles } from "@/components/page/Profiles";
 import { FinalCta } from "@/components/page/FinalCta";
 import { Footer } from "@/components/page/Footer";
 import { Pattern } from "@/components/ui/Pattern";
@@ -34,11 +33,10 @@ export default function Home() {
         <SectionSeparator />
         <Beliefs />
         <SectionSeparator />
-        <Profiles />
-        <SectionSeparator />
         <FinalCta />
         <SectionSeparator />
         <Footer />
+        <SectionSeparator />
       </div>
     </main>
   );

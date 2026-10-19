@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Terminal, BarChart2, GitCompare, Menu, X, ArrowLeft } from "lucide-react";
+import { Terminal, Menu, X, ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { SectionShell } from "@/components/ui/SectionShell";
 
@@ -24,23 +24,6 @@ export function AnalyticsNavBar() {
             <Terminal size={18} aria-hidden="true" />
             Leuk
           </Link>
-
-          {/* <div className="hidden items-center gap-8 md:flex">
-            <Link
-              href="/analyze"
-              className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
-              <BarChart2 size={15} className="text-emerald-500" />
-              <span>Analyze</span>
-            </Link>
-            <Link
-              href="/compare"
-              className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
-              <GitCompare size={15} className="text-emerald-500" />
-              <span>Compare</span>
-            </Link>
-          </div> */}
         </div>
 
         <div className="flex items-center gap-2">
@@ -49,7 +32,7 @@ export function AnalyticsNavBar() {
             className="hidden min-h-8 items-center gap-1.5 border border-neutral-300 bg-white px-3 text-xs font-mono text-neutral-700 transition-colors hover:border-neutral-950 hover:text-neutral-950 sm:inline-flex dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-50 dark:hover:text-neutral-50 rounded-xs"
           >
             <ArrowLeft size={13} />
-            <span>Portfolio</span>
+            <span>Home</span>
           </Link>
 
           <ThemeToggle />
@@ -73,26 +56,12 @@ export function AnalyticsNavBar() {
         >
           <div className="flex flex-col gap-3">
             <Link
-              href="/analyze"
-              onClick={() => setOpen(false)}
-              className="text-sm font-medium text-neutral-700 dark:text-neutral-300 py-1"
-            >
-              Analyze
-            </Link>
-            <Link
-              href="/compare"
-              onClick={() => setOpen(false)}
-              className="text-sm font-medium text-neutral-700 dark:text-neutral-300 py-1"
-            >
-              Compare
-            </Link>
-            <Link
               href="/"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex min-h-9 items-center justify-center gap-1.5 border border-neutral-300 bg-white px-4 text-xs font-mono text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+              className="inline-flex min-h-9 items-center justify-center gap-1.5 border border-neutral-300 bg-white px-4 text-xs font-mono text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
             >
               <ArrowLeft size={13} />
-              <span>Back to Portfolio</span>
+              <span>Home</span>
             </Link>
           </div>
         </div>

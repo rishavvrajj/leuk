@@ -8,7 +8,7 @@ export function Footer() {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/rishavv-rajj/",
     },
-    { label: "Get started", href: '/rishavvrajj' },
+    { label: "Get started", href: '/analyze' },
   ];
 
   return (

@@ -49,15 +49,6 @@ export interface RecruiterInsights {
   suggestedInterviewQuestions: string[];
 }
 
-export interface RoleFitScores {
-  frontend: number; // 0-100
-  backend: number;
-  fullstack: number;
-  devops: number;
-  aiml: number;
-  openSource: number;
-}
-
 export interface UserAnalytics {
   username: string;
   name?: string;
@@ -83,8 +74,16 @@ export interface UserAnalytics {
   scoreBreakdown: ScoreBreakdown;
   activityMetrics: ActivityMetrics;
   recruiterInsights: RecruiterInsights;
-  roleFit: RoleFitScores;
   cachedAt: string;
+}
+
+export interface CategoryComparison {
+  category: string;
+  label: string;
+  leftScore: number;
+  rightScore: number;
+  winner: "left" | "right" | "tie";
+  commentary: string;
 }
 
 export interface ComparisonResult {
@@ -96,5 +95,9 @@ export interface ComparisonResult {
     leftKeyStrengths: string[];
     rightKeyStrengths: string[];
     contextualConclusion: string;
+    winner: string;
+    verdict: string;
+    roast: string;
   };
+  categoryComparisons: CategoryComparison[];
 }

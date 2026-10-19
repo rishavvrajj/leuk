@@ -46,17 +46,17 @@ export function LanguageAllocation({ languageBreakdown }: LanguageAllocationProp
                 key={lang}
                 className="flex items-center justify-between py-2 border-b border-neutral-200 dark:border-neutral-800/60"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <span
-                    className="h-3 w-3 rounded-full"
+                    className="h-3 w-3 rounded-full shrink-0"
                     style={{ backgroundColor: color }}
                   />
-                  <span className="text-sm font-bold text-neutral-950 dark:text-white font-sans">
+                  <span className="text-sm font-normal text-neutral-950 dark:text-white font-sans truncate">
                     {lang}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300 font-bold">
+                <div className="flex items-center gap-2 whitespace-nowrap shrink-0">
+                  <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300 font-normal">
                     {percentage}%
                   </span>
                 </div>

@@ -57,21 +57,29 @@ export default function AnalyticsDashboardPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+      <main className="relative flex w-full flex-col items-center h-screen overflow-hidden bg-neutral-100 dark:bg-neutral-950 font-sans">
         <Pattern />
-        <div className="z-10 flex w-full flex-col items-center">
+        <div className="z-10 flex w-full h-full flex-col justify-between">
+          <div>
+            <SectionSeparator />
+            <AnalyticsNavBar />
+          </div>
+
           <SectionSeparator />
-          <AnalyticsNavBar />
-          <SectionSeparator />
-          <SectionShell contentClassName="flex flex-col items-center justify-center p-16 sm:p-24 min-h-[50vh]">
-            <Loader2 size={36} className="animate-spin text-emerald-500 mb-4" />
-            <p className="text-xs font-mono text-neutral-600 dark:text-neutral-400">
-              Analyzing public GitHub signals for @{username}...
-            </p>
+          <SectionShell containerClassName="h-[calc(100vh-14rem)] w-full" className="flex items-center w-full h-full" contentClassName="flex items-center justify-center p-6 sm:p-12 w-full h-full">
+            <div className="flex flex-col items-center justify-center">
+              <Loader2 size={36} className="animate-spin text-emerald-500 mb-4" />
+              <p className="text-xs font-mono text-neutral-600 dark:text-neutral-400">
+                Analyzing public GitHub signals for @{username}...
+              </p>
+            </div>
           </SectionShell>
-          <SectionSeparator />
-          <Footer />
-          <SectionSeparator />
+
+          <div>
+            <SectionSeparator />
+            <Footer />
+            <SectionSeparator />
+          </div>
         </div>
       </main>
     );
@@ -90,7 +98,7 @@ export default function AnalyticsDashboardPage({ params }: PageProps) {
               <div className="h-12 w-12 rounded-xs bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mx-auto dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-400">
                 <AlertCircle size={24} />
               </div>
-              <h2 className="text-lg font-bold font-sans text-neutral-950 dark:text-neutral-50">Analytics Generation Failed</h2>
+              <h2 className="text-lg font-normal font-sans text-neutral-950 dark:text-neutral-50">Analytics Generation Failed</h2>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
                 {error || `Could not generate analytics for @${username}. Please check the username or API rate limits.`}
               </p>

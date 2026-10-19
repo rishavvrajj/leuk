@@ -30,19 +30,19 @@ export function ScoreBreakdown({ scoreBreakdown }: ScoreBreakdownProps) {
           >
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl text-neutral-700 dark:text-neutral-300">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="p-2 rounded-xl text-neutral-700 dark:text-neutral-300 shrink-0">
                     <Icon size={16} />
                   </div>
-                  <span className="text-sm font-bold text-neutral-950 dark:text-white font-sans">
+                  <span className="text-sm font-normal text-neutral-950 dark:text-white font-sans truncate">
                     {label}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap shrink-0">
                   <span className="text-[11px] font-mono text-neutral-500">
                     Wt: {data.weight}%
                   </span>
-                  <span className="text-sm font-black font-mono text-neutral-950 dark:text-white">
+                  <span className="text-sm font-normal font-mono text-neutral-950 dark:text-white">
                     {data.score}/100
                   </span>
                 </div>
@@ -61,9 +61,9 @@ export function ScoreBreakdown({ scoreBreakdown }: ScoreBreakdownProps) {
               </p>
             </div>
 
-            <div className="pt-3 border-t border-neutral-200 dark:border-neutral-800 text-[11px] font-mono text-neutral-500 flex items-start gap-1.5">
-              <span className="text-emerald-500 mt-0.5 font-bold">ℹ</span>
-              <span>{data.dataContribution}</span>
+            <div className="pt-3 border-t border-neutral-200 dark:border-neutral-800 text-[11px] font-mono text-neutral-500 flex items-center gap-1.5 min-w-0">
+              <span className="text-emerald-500 font-normal shrink-0">ℹ</span>
+              <span className="truncate">{data.dataContribution}</span>
             </div>
           </div>
         );

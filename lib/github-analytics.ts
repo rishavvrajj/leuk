@@ -4,7 +4,6 @@ import {
   ScoreBreakdown,
   ActivityMetrics,
   RecruiterInsights,
-  RoleFitScores,
   SignalScore,
 } from "./analytics-types";
 
@@ -125,7 +124,6 @@ function computeAnalytics(
       }
     }
 
-    // Quality score for repo (0-100)
     let qScore = 50;
     if (r.description && r.description.length > 10) qScore += 15;
     if (r.homepage) qScore += 10;
@@ -156,7 +154,6 @@ function computeAnalytics(
   const totalStars = nonForks.reduce((sum, r) => sum + r.stars, 0);
   const totalForks = nonForks.reduce((sum, r) => sum + r.forks, 0);
 
-  // Language breakdown
   const langCounts = new Map<string, number>();
   let langTotal = 0;
   for (const r of nonForks) {
@@ -170,25 +167,20 @@ function computeAnalytics(
     languageBreakdown[lang] = Math.round((count / safeLangTotal) * 100);
   }
 
-  // Signal calculations (0-100)
-  // 1. Consistency (20%): based on recent push frequency & active repos
   const consistencyScore = Math.min(
     100,
     Math.round(Math.min(100, (last90DaysPushes / 12) * 60 + (activeReposCount / 5) * 40))
   );
 
-  // 2. Impact (20%): stars & forks
   const impactScore = Math.min(
     100,
     Math.round(Math.min(100, Math.log10(totalStars + 1) * 35 + Math.log10(totalForks + 1) * 25 + Math.min(40, user.followers / 5)))
   );
 
-  // 3. Originality (15%): proportion of non-fork repos
   const forkCount = analyzedRepos.length - nonForks.length;
   const originalRatio = analyzedRepos.length > 0 ? nonForks.length / analyzedRepos.length : 1;
   const originalityScore = Math.round(originalRatio * 100);
 
-  // 4. Technical Breadth (15%): language diversity & topics
   const uniqueLangs = langCounts.size;
   const uniqueTopics = new Set(analyzedRepos.flatMap((r) => r.topics)).size;
   const breadthScore = Math.min(
@@ -196,20 +188,17 @@ function computeAnalytics(
     Math.round(Math.min(50, uniqueLangs * 12) + Math.min(50, uniqueTopics * 4))
   );
 
-  // 5. Collaboration (15%): followers vs following, ecosystem signals, topics
   const collabRatio = user.following > 0 ? Math.min(2, user.followers / user.following) : 1;
   const collaborationScore = Math.min(
     100,
     Math.round(Math.min(60, user.followers * 0.8) + Math.min(40, collabRatio * 20))
   );
 
-  // 6. Growth / Momentum (10%): last 90 vs prev 90
   const momentumDiff = last90DaysPushes - prev90DaysPushes;
   let growthScore = 50;
   if (momentumDiff > 0) growthScore = Math.min(100, 60 + momentumDiff * 5);
   else if (momentumDiff < 0) growthScore = Math.max(10, 50 + momentumDiff * 3);
 
-  // 7. Repository Quality (5%): avg quality score of non-fork repos
   const avgRepoQuality =
     nonForks.length > 0
       ? nonForks.reduce((acc, r) => acc + r.qualityScore, 0) / nonForks.length
@@ -283,14 +272,21 @@ function computeAnalytics(
     ? Math.round(((last90DaysPushes - prev90DaysPushes) / prev90DaysPushes) * 100)
     : last90DaysPushes > 0 ? 100 : 0;
 
-  const signalBadges: string[] = [];
-  if (consistencyScore >= 75) signalBadges.push("Consistent");
-  if (trendPercentage > 15 || growthScore > 65) signalBadges.push("Rising");
-  if (impactScore >= 70) signalBadges.push("High Impact");
-  if (originaliveCheck(originalRatio)) signalBadges.push("Open Source");
-  if (uniqueLangs >= 3) signalBadges.push("Full-Stack");
-  if (originalRatio < 0.4) signalBadges.push("Fork Heavy");
-  if (consistencyScore < 40) signalBadges.push("Low Recent Activity");
+  const topLangsList = Object.entries(languageBreakdown)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([l]) => l);
+
+  const sList: string[] = [];
+  if (consistencyScore >= 75) sList.push("Consistent");
+  if (trendPercentage > 15 || growthScore > 65) sList.push("Rising");
+  if (impactScore >= 70) sList.push("High Impact");
+  if (originalRatio >= 0.75) sList.push("Open Source");
+
+  if (originalRatio < 0.4) sList.push("Fork Heavy");
+  if (consistencyScore < 40) sList.push("Low Recent Activity");
+
+  const signalBadges = sList.slice(0, 4);
 
   const activityMetrics: ActivityMetrics = {
     activeWeeksCount: Math.min(52, Math.round((last90DaysPushes / 90) * 52 * 2)),
@@ -303,26 +299,43 @@ function computeAnalytics(
     forkPercentage: Math.round((forkCount / Math.max(1, analyzedRepos.length)) * 100),
   };
 
-  // Recruiter Insights
-  const topLangsList = Object.entries(languageBreakdown)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map(([l]) => l);
+  const technicalStrengths: { strength: string; evidence: string }[] = [];
 
-  const technicalStrengths = [
-    {
-      strength: topLangsList.length > 0 ? `Core proficiency in ${topLangsList.join(", ")}` : "General Software Engineering",
-      evidence: `${nonForks.length} original repositories utilizing modern language stacks and topic metadata.`,
-    },
-    {
-      strength: impactScore >= 70 ? "High Community Validation & Reach" : "Product & Prototype Execution",
+  if (topLangsList.length > 0) {
+    technicalStrengths.push({
+      strength: `Core Language Stack: ${topLangsList.join(", ")}`,
+      evidence: `${nonForks.length} original repositories utilizing verified language distribution and topic metadata.`,
+    });
+  } else {
+    technicalStrengths.push({
+      strength: "Software Engineering",
+      evidence: `${nonForks.length} public code repositories recorded.`,
+    });
+  }
+
+  if (impactScore >= 70) {
+    technicalStrengths.push({
+      strength: "High Community Validation & Reach",
       evidence: `Managed ${totalStars} total stars and ${totalForks} forks across public open source contributions.`,
-    },
-    {
-      strength: breadthScore >= 70 ? "Cross-Disciplinary Technical Breadth" : "Focused Specialization",
+    });
+  } else {
+    technicalStrengths.push({
+      strength: "Implementation & Prototype Execution",
+      evidence: `Maintains active public code repositories with documented metadata.`,
+    });
+  }
+
+  if (breadthScore >= 70) {
+    technicalStrengths.push({
+      strength: "Cross-Disciplinary Technical Breadth",
       evidence: `Exhibits active codebases across ${uniqueLangs} programming languages and ${uniqueTopics} distinct focus areas.`,
-    },
-  ];
+    });
+  } else {
+    technicalStrengths.push({
+      strength: "Focused Domain Expertise",
+      evidence: `Concentrated development footprint with verifiable language and framework alignment.`,
+    });
+  }
 
   const collaborationSignals = [
     `Maintains an active public network with ${user.followers} followers and ${user.public_repos} total public repositories.`,
@@ -346,24 +359,6 @@ function computeAnalytics(
     collaborationSignals,
     caveats,
     suggestedInterviewQuestions,
-  };
-
-  // Role Fit
-  const hasLang = (l: string) => languageBreakdown[l] !== undefined;
-  const frontendScore = Math.min(100, (hasLang("TypeScript") ? 40 : 0) + (hasLang("JavaScript") ? 35 : 0) + (hasLang("CSS") || hasLang("HTML") || hasLang("Vue") || hasLang("Svelte") ? 25 : 10));
-  const backendScore = Math.min(100, (hasLang("Python") ? 35 : 0) + (hasLang("Go") ? 40 : 0) + (hasLang("Java") ? 35 : 0) + (hasLang("Rust") ? 40 : 0) + (hasLang("Ruby") || hasLang("PHP") ? 25 : 10));
-  const fullstackScore = Math.min(100, Math.round((frontendScore + backendScore) / 2 + 15));
-  const devopsScore = Math.min(100, (hasLang("Shell") ? 40 : 10) + (hasLang("Dockerfile") || uniqueTopics > 5 ? 40 : 20));
-  const aimlScore = Math.min(100, (hasLang("Python") || hasLang("Jupyter Notebook") ? 60 : 10) + (uniqueTopics > 3 ? 30 : 10));
-  const openSourceScore = Math.min(100, originalityScore * 0.5 + impactScore * 0.5);
-
-  const roleFit: RoleFitScores = {
-    frontend: Math.round(frontendScore),
-    backend: Math.round(backendScore),
-    fullstack: Math.round(fullstackScore),
-    devops: Math.round(devopsScore),
-    aiml: Math.round(aimlScore),
-    openSource: Math.round(openSourceScore),
   };
 
   return {
@@ -391,11 +386,6 @@ function computeAnalytics(
     scoreBreakdown,
     activityMetrics,
     recruiterInsights,
-    roleFit,
     cachedAt: new Date().toISOString(),
   };
-}
-
-function originaliveCheck(ratio: number): boolean {
-  return ratio >= 0.75;
 }

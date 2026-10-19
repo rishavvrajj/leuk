@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { LucideGitBranchPlus, Menu, X, Terminal } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { SectionShell } from "@/components/ui/SectionShell";
 
@@ -8,7 +8,8 @@ const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
   { label: "Beliefs", href: "#beliefs" },
-  { label: "Profiles", href: "#profiles" },
+  { label: "Analyze", href: "/analyze" },
+  { label: "Compare", href: "/compare" },
 ];
 
 export function NavBar() {
@@ -32,35 +33,41 @@ export function NavBar() {
 
           <div className="hidden items-center gap-8 md:flex">
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
-              >
-                {link.label}
-              </a>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href="https://github.com/rishavvrajj/leuk"
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="Leuk on GitHub"
-            className="inline-flex h-8 w-8 items-center justify-center border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:text-neutral-950 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:text-neutral-50"
-          >
-            <LucideGitBranchPlus size={18} aria-hidden="true" />
-          </a>
-
           <ThemeToggle />
 
           <Link
-            href="/rishavvrajj"
-            className="hidden min-h-8 items-center border border-neutral-950 bg-neutral-950 px-4 text-sm font-medium text-white transition-colors hover:bg-neutral-800 sm:inline-flex dark:border-neutral-50 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300"
+            href="/analyze"
+            className="hidden min-h-8 items-center border border-neutral-950 bg-neutral-950 px-4 text-xs font-mono font-medium text-white transition-colors hover:bg-neutral-800 sm:inline-flex dark:border-neutral-50 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300"
           >
-            Demo
+            Analyze
+          </Link>
+          <Link
+            href="/compare"
+            className="hidden min-h-8 items-center border border-neutral-300 bg-white px-4 text-xs font-mono font-medium text-neutral-950 transition-colors hover:border-neutral-950 sm:inline-flex dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:border-neutral-50"
+          >
+            Compare
           </Link>
 
           <button
@@ -82,22 +89,42 @@ export function NavBar() {
         >
           <div className="flex flex-col gap-3">
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
-              >
-                {link.label}
-              </a>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
-            <Link
-              href="/rishavvrajj"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex min-h-9 items-center justify-center border border-neutral-950 bg-neutral-950 px-4 text-xs font-medium text-white transition-colors hover:bg-neutral-800 dark:border-neutral-50 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300"
-            >
-              Demo
-            </Link>
+            <div className="flex gap-2 mt-2">
+              <Link
+                href="/analyze"
+                onClick={() => setOpen(false)}
+                className="flex-1 inline-flex min-h-9 items-center justify-center border border-neutral-950 bg-neutral-950 px-4 text-xs font-mono font-medium text-white transition-colors hover:bg-neutral-800 dark:border-neutral-50 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300"
+              >
+                Analyze
+              </Link>
+              <Link
+                href="/compare"
+                onClick={() => setOpen(false)}
+                className="flex-1 inline-flex min-h-9 items-center justify-center border border-neutral-300 bg-white px-4 text-xs font-mono font-medium text-neutral-950 transition-colors hover:border-neutral-950 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:border-neutral-50"
+              >
+                Compare
+              </Link>
+            </div>
           </div>
         </div>
       )}

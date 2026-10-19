@@ -25,12 +25,12 @@ export function TopRepositories({ repos }: TopRepositoriesProps) {
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-neutral-200 dark:border-neutral-800 text-[11px] font-mono uppercase tracking-wider text-neutral-500 bg-neutral-50/50 dark:bg-neutral-900/50">
-              <th className="py-3 px-4">Repository</th>
-              <th className="py-3 px-4">Type</th>
-              <th className="py-3 px-4">Language</th>
-              <th className="py-3 px-4">Stars / Forks</th>
-              <th className="py-3 px-4">Hygiene Score</th>
-              <th className="py-3 px-4 text-right">Action</th>
+              <th className="py-3 px-4 whitespace-nowrap">Repository</th>
+              <th className="py-3 px-4 whitespace-nowrap">Type</th>
+              <th className="py-3 px-4 whitespace-nowrap">Language</th>
+              <th className="py-3 px-4 whitespace-nowrap">Stars / Forks</th>
+              <th className="py-3 px-4 whitespace-nowrap">Hygiene Score</th>
+              <th className="py-3 px-4 text-right whitespace-nowrap">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800/60 text-xs font-mono">
@@ -48,11 +48,11 @@ export function TopRepositories({ repos }: TopRepositoriesProps) {
                 >
                   <td className="py-4 px-4 max-w-xs">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-neutral-950 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                      <span className="font-normal text-neutral-950 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
                         {repo.name}
                       </span>
                       {repo.isArchived && (
-                        <span className="text-[10px] bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-700">
+                        <span className="text-[10px] bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-700 whitespace-nowrap">
                           Archived
                         </span>
                       )}
@@ -63,7 +63,7 @@ export function TopRepositories({ repos }: TopRepositoriesProps) {
                       </p>
                     )}
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-4 whitespace-nowrap">
                     {repo.isFork ? (
                       <span className="inline-flex items-center gap-1 text-[11px] text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 px-2 py-0.5 rounded border border-neutral-200 dark:border-neutral-800">
                         <GitBranch size={12} /> Fork
@@ -74,11 +74,11 @@ export function TopRepositories({ repos }: TopRepositoriesProps) {
                       </span>
                     )}
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-4 whitespace-nowrap">
                     {repo.language ? (
                       <div className="flex items-center gap-2">
                         <span
-                          className="h-2.5 w-2.5 rounded-full"
+                          className="h-2.5 w-2.5 rounded-full shrink-0"
                           style={{ backgroundColor: langColor }}
                         />
                         <span className="text-neutral-700 dark:text-neutral-300">{repo.language}</span>
@@ -87,24 +87,24 @@ export function TopRepositories({ repos }: TopRepositoriesProps) {
                       <span className="text-neutral-400">N/A</span>
                     )}
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-4 whitespace-nowrap">
                     <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1 text-neutral-950 dark:text-white font-bold">
-                        <Star size={13} className="text-emerald-500" /> {repo.stars}
+                      <span className="flex items-center gap-1 text-neutral-950 dark:text-white font-normal">
+                        <Star size={13} className="text-emerald-500 shrink-0" /> {repo.stars}
                       </span>
                       <span className="flex items-center gap-1 text-neutral-500">
-                        <GitFork size={13} /> {repo.forks}
+                        <GitFork size={13} className="shrink-0" /> {repo.forks}
                       </span>
                     </div>
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-4 whitespace-nowrap">
                     <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-lg border font-bold ${qualityColor}`}
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-lg border font-normal ${qualityColor}`}
                     >
                       {repo.qualityScore}/100
                     </span>
                   </td>
-                  <td className="py-4 px-4 text-right">
+                  <td className="py-4 px-4 text-right whitespace-nowrap">
                     <a
                       href={repo.htmlUrl}
                       target="_blank"
