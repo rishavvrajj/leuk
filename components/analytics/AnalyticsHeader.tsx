@@ -99,7 +99,7 @@ export function AnalyticsHeader({ analytics, onRefresh, isRefreshing }: Analytic
           </div>
 
           {/* Score Display Card */}
-          <div className="flex flex-row sm:flex-row items-start gap-6 py-2 justify-start">
+          <div className="hidden md:flex flex-row sm:flex-row items-start gap-6 py-2 justify-start">
             {/* Column 1: Score */}
             <div className="flex flex-col items-start whitespace-nowrap">
               <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">
