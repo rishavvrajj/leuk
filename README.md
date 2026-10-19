@@ -1,81 +1,89 @@
-# leuk
+# Leuk 🚀
 
-Type a GitHub username on the landing page → instantly get a beautiful, shareable dev-portfolio page at `/[username]`.
+> Deep GitHub profile analytics, AI insights, and developer comparison platform.
 
-Live data is fetched from the GitHub REST API. **No database.** Everything is fetched at request time and cached with Next.js `fetch` for 1 hour.
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
 
-## ✨ Features
+Leuk is a modern, high-performance web application designed to analyze GitHub developer profiles, calculate codebase health metrics and Leuk scores, generate AI insights, and compare two developer profiles side-by-side.
 
-- Live GitHub data via the REST API v3 (no storage, no DB)
-- Dark, modern, glassy dev-portfolio aesthetic
-- Hero with avatar, bio, and badges (company · location · followers · website · X)
-- Stat cards: Total Stars, Public Repos, Followers, Top Repo Stars
-- Language breakdown using real GitHub language colours
-- Top 12 repositories (sorted by stars, forks excluded) with topics and archived badges
-- `/[username]` route + custom loading, 404, and error states
-- One-click **Refresh** that busts the cache and re-pulls fresh data without a full page reload
-- SEO metadata + Open Graph image per user
-- Fully responsive
+---
 
-## 🛠 Tech Stack
+## ✨ Key Features
 
-- [Next.js](https://nextjs.org) (App Router) + TypeScript
-- [Tailwind CSS](https://tailwindcss.com) v4
-- GitHub REST API v3 (`api.github.com`)
+- **GitHub Profile Analytics (`/analyze/[username]`)**:
+  - Comprehensive metrics including Leuk Score (/100), letter grade, and 90-day activity trends.
+  - Signal badges, developer bio, location, company, and account age metrics.
+  - Top repositories breakdown with hygiene scores, language identification, stars, forks, and archive status.
+  - Contribution heatmaps and activity insights.
+- **Side-by-Side Comparison (`/compare/[left]/[right]`)**:
+  - Compare two developer profiles head-to-head.
+  - Contrast stats, impact scores, and tech stacks.
+- **Retro-Terminal & Modern Aesthetic**:
+  - Precision grid pattern backgrounds and rail separators.
+  - Fully responsive design optimized for mobile (iPhone SE), tablets (iPad Mini), and desktop viewports.
+  - Built-in Dark and Light mode support via `next-themes`.
 
-## 📁 Structure
+---
 
-```
-lib/github.ts          # All GitHub fetching + portfolio transformation
-lib/colors.ts          # GitHub language → colour map
-app/page.tsx           # Landing page + SearchBox
-app/[username]/page.tsx# Portfolio page (server component)
-app/[username]/loading.tsx
-app/[username]/not-found.tsx
-app/error.tsx
-app/api/refresh/[username]/route.ts  # POST: cache-bust + refetch
-components/…          # SearchBox, StatCard, LanguageBars, RepoCard, RefreshButton
-```
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **UI Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+---
 
 ## 🚀 Getting Started
 
+### Prerequisites
+
+Ensure you have Node.js (v18+) installed on your machine.
+
+### Installation & Running
+
+1. Clone the repository and install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+### Building for Production
+
 ```bash
-npm install
-npm run dev
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000), type a username (e.g. `torvalds`), and hit **Generate**.
+---
 
-### Optional: GitHub token
+## 📂 Project Structure
 
-Without a token you get the unauthenticated rate limit of **60 requests/hour**. Setting `GITHUB_TOKEN` raises that to **5,000/hour**.
-
-1. Go to https://github.com/settings/tokens → **Tokens (classic)** → **Generate new token**.
-2. You only need the `public_repo` (read) scope — or leave scopes unchecked for pure public reads.
-3. Create a `.env.local` file and paste it in:
-
-```bash
-GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+```tree
+├── app/                  # Next.js App Router pages and API routes
+│   ├── analyze/          # Profile analysis search & dynamic [username] routes
+│   ├── compare/          # Profile comparison search & dynamic [left]/[right] routes
+│   └── api/              # Backend analytics & comparison API handlers
+├── components/           # Reusable UI components
+│   ├── analytics/        # Profile header, repository tables, score cards
+│   ├── page/             # Landing page sections (Hero, Features, Beliefs, Footer, etc.)
+│   └── ui/               # Section shell, pattern, separators, primary buttons
+├── lib/                  # TypeScript types, color utilities, and data helpers
+└── public/               # Static assets
 ```
 
-4. Restart the dev server. That's it — the app reads `GITHUB_TOKEN` from the environment and works without it too.
+---
 
-> ⚠️ Never commit a real token. `.gitignore` already ignores `.env*`.
+## 📄 License
 
-## ⚙️ How caching works
-
-- All GitHub fetches use `next: { revalidate: 3600 }` — data goes stale after **1 hour**, then revalidates in the background.
-- The **Refresh** button POSTs to `/api/refresh/[username]`, which revalidates the page + its fetch tags and re-pulls with `cache: "no-store"`, then calls `router.refresh()` to update the UI — no full page reload.
-
-## ☁️ Deploy to Vercel
-
-1. Push this repo to GitHub.
-2. Import the repository in [vercel.com](https://vercel.com) — it auto-detects Next.js.
-3. (Optional) Add a `GITHUB_TOKEN` environment variable in Settings → Environment Variables.
-4. Deploy. Done.
-
-> 💡 Set the `metadataBase` field (see `app/layout.tsx`) to your production domain for correct Open Graph URLs.
-
-## 🙏 Data
-
-All data comes from [GitHub's REST API](https://docs.github.com/en/rest) and is cached for up to 1 hour. It is used for display only — no user data is stored.
+This project is open-source and available under the [MIT License](LICENSE).
