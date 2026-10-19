@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { UserAnalytics } from "@/lib/analytics-types";
-import { MapPin, Building, Calendar, Users, GitFork, Star, TrendingUp, TrendingDown, RefreshCw, GitCompare, Share2, Award, Activity, Cpu } from "lucide-react";
+import { MapPin, Building, Calendar, Users, GitFork, Star, TrendingUp, TrendingDown, RefreshCw, GitCompare, Share2, Award, Activity, Cpu, ExternalLink } from "lucide-react";
 
 interface AnalyticsHeaderProps {
   analytics: UserAnalytics;
@@ -36,13 +36,25 @@ export function AnalyticsHeader({ analytics, onRefresh, isRefreshing }: Analytic
                 <h1 className="text-2xl sm:text-3xl font-normal text-neutral-950 dark:text-white tracking-tight font-sans">
                   {analytics.name || analytics.username}
                 </h1>
-                <span className="text-xs font-mono text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 px-3 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 whitespace-nowrap">
-                  @{analytics.username}
-                </span>
+                <a
+                  href={`https://github.com/${analytics.username}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-900 px-3 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:text-neutral-950 dark:hover:text-white transition-colors whitespace-nowrap shadow-2xs"
+                >
+                  <ExternalLink size={12} className="text-neutral-400" />
+                  GitHub
+                </a>
                 {analytics.twitterUsername && (
-                  <span className="text-xs font-mono text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 px-2.5 py-0.5 rounded-full border border-neutral-200 dark:border-neutral-800 whitespace-nowrap">
-                    @{analytics.twitterUsername}
-                  </span>
+                  <a
+                    href={`https://twitter.com/${analytics.twitterUsername}`}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-900 px-3 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:text-neutral-950 dark:hover:text-white transition-colors whitespace-nowrap shadow-2xs"
+                  >
+                    <ExternalLink size={12} className="text-neutral-400" />
+                    Twitter
+                  </a>
                 )}
               </div>
 

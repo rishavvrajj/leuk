@@ -27,7 +27,7 @@ export function SectionShell({
       {/* Centered container shell */}
       <Component
         id={id}
-        className={`relative min-w-7xl h-full shadow-2xs backdrop-blur-md bg-neutral-100/95 dark:bg-neutral-950/95 ${className}`}
+        className={`relative w-full min-w-7xl h-full shadow-2xs backdrop-blur-md bg-neutral-100/95 dark:bg-neutral-950/95 ${className}`}
       >
         <div className="absolute w-px h-full left-0 bg-linear-to-b from-neutral-100 dark:from-neutral-800 via-neutral-400 dark:via-neutral-400 to-neutral-100 dark:to-neutral-800 z-100"></div>
         <div className="absolute w-px h-full right-0 bg-linear-to-b from-neutral-100 dark:from-neutral-800 via-neutral-400 dark:via-neutral-400 to-neutral-100 dark:to-neutral-800 z-100"></div>
