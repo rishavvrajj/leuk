@@ -28,7 +28,12 @@ export function HowItWorks() {
 
   return (
     <SectionShell id="HowItWorks" contentClassName="p-8">
-      <div className="grid grid-cols-2">
+      <SectionHeading
+        eyebrow="How it works"
+        title="Three steps to a living profile."
+        description="From handle to hosted portfolio in seconds."
+      />
+      <div className="mt-12 grid grid-cols-2">
         {steps.map((step, index) => {
           const Icon = step.icon;
 

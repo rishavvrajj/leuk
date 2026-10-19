@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <SectionShell id="Home" containerClassName="h-160" className="flex items-center" contentClassName="flex items-center justify-center">
+    <SectionShell id="home" containerClassName="h-160" className="flex items-center" contentClassName="flex items-center justify-center">
       <div className="mx-auto max-w-4xl text-center space-y-6 px-4">
         <p className="inline-flex items-center gap-4 bg-neutral-50 px-3.5 py-1 rounded-xl text-xs tracking-wide text-neutral-600 shadow-lg border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
           <span className="h-2.5 w-2.5 font-pally rounded-full bg-emerald-500" />

@@ -5,15 +5,36 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { SectionShell } from "@/components/ui/SectionShell";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "Beliefs", href: "#beliefs" },
+  { label: "Home", href: "/" },
+  { label: "Features", href: "/#features" },
+  { label: "Beliefs", href: "/#beliefs" },
   { label: "Analyze", href: "/analyze" },
   { label: "Compare", href: "/compare" },
 ];
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#")) {
+      const targetId = href.replace("/#", "");
+      if (typeof window !== "undefined" && window.location.pathname === "/") {
+        e.preventDefault();
+        const element =
+          document.getElementById(targetId) ||
+          document.getElementById(targetId.toLowerCase()) ||
+          document.getElementById(targetId.charAt(0).toUpperCase() + targetId.slice(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    } else if (href === "/") {
+      if (typeof window !== "undefined" && window.location.pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <>
@@ -23,33 +44,25 @@ export function NavBar() {
         contentClassName="flex items-center justify-between h-full w-full px-4 sm:px-8"
       >
         <div className="flex items-center justify-between gap-12 lg:gap-24">
-          <a
-            href="#home"
+          <Link
+            href="/"
+            onClick={(e) => handleNavClick(e, "/")}
             className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight text-neutral-950 dark:text-neutral-50"
           >
             <Terminal size={18} aria-hidden="true" />
             Leuk
-          </a>
+          </Link>
 
           <div className="hidden items-center gap-8 md:flex">
             {NAV_LINKS.map((link) => (
-              link.href.startsWith("/") ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
-                >
-                  {link.label}
-                </a>
-              )
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-sm text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
         </div>
@@ -89,25 +102,17 @@ export function NavBar() {
         >
           <div className="flex flex-col gap-3">
             {NAV_LINKS.map((link) => (
-              link.href.startsWith("/") ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
-                >
-                  {link.label}
-                </a>
-              )
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  handleNavClick(e, link.href);
+                  setOpen(false);
+                }}
+                className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
+              >
+                {link.label}
+              </Link>
             ))}
             <div className="flex gap-2 mt-2">
               <Link

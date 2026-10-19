@@ -27,7 +27,7 @@ export function Beliefs() {
   ];
 
   return (
-    <SectionShell id="Beliefs" contentClassName="p-8">
+    <SectionShell id="beliefs" contentClassName="p-8">
       <SectionHeading
         eyebrow="Philosophy"
         title="What we believe."

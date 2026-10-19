@@ -31,7 +31,7 @@ export function Features() {
   ];
 
   return (
-    <SectionShell id="Features" contentClassName="p-8">
+    <SectionShell id="features" contentClassName="p-8">
       <SectionHeading
         eyebrow="Features"
         title="Work only. No noise."

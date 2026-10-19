@@ -30,7 +30,7 @@ export function PrimaryButton({
     );
   }
 
-  const targetHref = href || (userName.trim() ? `/${encodeURIComponent(userName.trim())}` : '#');
+  const targetHref = href || (userName.trim() ? `/analyze/${encodeURIComponent(userName.trim())}` : '#');
 
   return (
     <div className="flex flex-col w-full bg-neutral-100/60 p-4 sm:p-5 rounded-3xl sm:rounded-4xl shadow-xl border border-neutral-200 dark:bg-neutral-950/30 dark:border-neutral-800">
@@ -41,7 +41,7 @@ export function PrimaryButton({
         onChange={(event) => setUserName(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === "Enter" && userName.trim()) {
-            router.push(`/${encodeURIComponent(userName.trim())}`);
+            router.push(`/analyze/${encodeURIComponent(userName.trim())}`);
           }
         }}
         className="w-full text-xs bg-transparent py-2 text-neutral-950 focus:outline-none placeholder:text-neutral-400 dark:text-white dark:placeholder:text-neutral-500 font-mono"

@@ -18,8 +18,8 @@ export function SectionHeading({
       }
     >
       {eyebrow ? (
-        <p className="mb-4 inline-flex items-center gap-2 rounded-xs border border-neutral-200/80 bg-neutral-50/50 px-3.5 py-1.5 font-mono text-xs uppercase tracking-widest text-neutral-600 shadow-2xs dark:border-neutral-800 dark:bg-neutral-900/50 dark:text-neutral-400">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+        <p className="mb-6 inline-flex items-center gap-4 bg-neutral-50 px-3.5 py-1 rounded-xl text-xs tracking-wide text-neutral-600 shadow-lg border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
+          <span className="h-2.5 w-2.5 font-pally rounded-full bg-emerald-500" aria-hidden="true" />
           {eyebrow}
         </p>
       ) : null}

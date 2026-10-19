@@ -87,34 +87,40 @@ export default function AnalyticsDashboardPage({ params }: PageProps) {
 
   if (error || !analytics) {
     return (
-      <main className="relative flex w-full flex-col items-center min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans">
+      <main className="relative flex w-full flex-col items-center h-screen overflow-hidden bg-neutral-100 dark:bg-neutral-950 font-sans">
         <Pattern />
-        <div className="z-10 flex w-full flex-col items-center">
+        <div className="z-10 flex w-full h-full flex-col justify-between">
+          <div>
+            <SectionSeparator />
+            <AnalyticsNavBar />
+          </div>
+
           <SectionSeparator />
-          <AnalyticsNavBar />
-          <SectionSeparator />
-          <SectionShell contentClassName="flex flex-col items-center justify-center p-8 sm:p-16">
-            <div className="max-w-md w-full rounded-xs border border-neutral-200/80 bg-white p-8 text-center space-y-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
-              <div className="h-12 w-12 rounded-xs bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mx-auto dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-400">
+          <SectionShell containerClassName="h-[calc(100vh-14rem)] w-full" className="flex items-center w-full h-full" contentClassName="flex items-center justify-center p-6 sm:p-12 w-full h-full">
+            <div className="max-w-md w-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 text-center space-y-4 shadow-sm">
+              <div className="h-12 w-12 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mx-auto dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-400">
                 <AlertCircle size={24} />
               </div>
-              <h2 className="text-lg font-normal font-sans text-neutral-950 dark:text-neutral-50">Analytics Generation Failed</h2>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+              <h2 className="text-lg font-bold text-neutral-950 dark:text-white font-sans">Analytics Generation Failed</h2>
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed font-mono">
                 {error || `Could not generate analytics for @${username}. Please check the username or API rate limits.`}
               </p>
               <div className="pt-4 flex items-center justify-center">
                 <Link
                   href="/analyze"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xs bg-neutral-950 text-white hover:bg-neutral-800 text-xs font-mono transition-colors dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
+                  className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-neutral-950 text-white hover:bg-neutral-800 text-xs font-mono font-bold transition-colors dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 shadow-sm"
                 >
                   <ArrowLeft size={14} /> Try Another Username
                 </Link>
               </div>
             </div>
           </SectionShell>
-          <SectionSeparator />
-          <Footer />
-          <SectionSeparator />
+
+          <div>
+            <SectionSeparator />
+            <Footer />
+            <SectionSeparator />
+          </div>
         </div>
       </main>
     );
