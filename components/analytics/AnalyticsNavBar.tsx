@@ -55,7 +55,7 @@ export function AnalyticsNavBar() {
             Leuk
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -91,7 +91,7 @@ export function AnalyticsNavBar() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-            className="inline-flex h-10 w-10 items-center justify-center border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:text-neutral-950 md:hidden dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:text-neutral-50 rounded-xs"
+            className="inline-flex h-10 w-10 items-center justify-center border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-950 hover:text-neutral-950 lg:hidden dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:text-neutral-50 rounded-xs"
           >
             {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
@@ -100,9 +100,19 @@ export function AnalyticsNavBar() {
       {open && (
         <div
           id="mobile-navigation"
-          className="absolute top-14 left-0 w-full bg-neutral-100/95 backdrop-blur-md border-b border-neutral-200 p-4 md:hidden dark:bg-neutral-950/95 dark:border-neutral-800 z-300 shadow-lg"
+          className="fixed inset-x-4 top-20 bg-neutral-100/98 backdrop-blur-md border border-neutral-200 p-4 sm:p-5 lg:hidden dark:bg-neutral-950/98 dark:border-neutral-800 z-300 shadow-2xl rounded-2xl"
         >
           <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between pb-2.5 border-b border-neutral-200 dark:border-neutral-800">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">Navigation</span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="p-1 rounded-md text-neutral-500 hover:text-neutral-950 dark:hover:text-white"
+              >
+                <X size={16} />
+              </button>
+            </div>
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -111,23 +121,23 @@ export function AnalyticsNavBar() {
                   handleNavClick(e, link.href);
                   setOpen(false);
                 }}
-                className="text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-50 py-1"
+                className="text-sm font-medium text-neutral-800 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:hover:text-white py-0.5"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="flex gap-2 mt-2">
+            <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-neutral-200 dark:border-neutral-800">
               <Link
                 href="/analyze"
                 onClick={() => setOpen(false)}
-                className="flex-1 inline-flex min-h-9 items-center justify-center border border-neutral-950 bg-neutral-950 px-4 text-xs font-mono font-medium text-white transition-colors hover:bg-neutral-800 dark:border-neutral-50 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300"
+                className="flex-1 inline-flex min-h-9 items-center justify-center border border-neutral-950 bg-neutral-950 px-3 text-xs font-mono font-medium text-white transition-colors hover:bg-neutral-800 dark:border-neutral-50 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300 rounded-xl"
               >
                 Analyze
               </Link>
               <Link
                 href="/compare"
                 onClick={() => setOpen(false)}
-                className="flex-1 inline-flex min-h-9 items-center justify-center border border-neutral-300 bg-white px-4 text-xs font-mono font-medium text-neutral-950 transition-colors hover:border-neutral-950 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:border-neutral-50"
+                className="flex-1 inline-flex min-h-9 items-center justify-center border border-neutral-300 bg-white px-3 text-xs font-mono font-medium text-neutral-950 transition-colors hover:border-neutral-950 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:border-neutral-50 rounded-xl"
               >
                 Compare
               </Link>

@@ -4,7 +4,7 @@ import { PrimaryButton } from "@/components/ui/PrimaryButton";
 
 export function Problem() {
   return (
-    <SectionShell contentClassName="py-8 px-4">
+    <SectionShell contentClassName="py-8 px-4 sm:p-8 lg:p-12">
       <SectionHeading
         eyebrow="The problem"
         title={
@@ -18,12 +18,12 @@ export function Problem() {
         description="Most portfolios go stale the moment they’re published. Bullet points age. PDFs collect dust. Meanwhile, your best work keeps moving forward."
       />
 
-      <p className="mx-auto mt-6 max-w-2xl text-center text-pretty text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
+      <p className="mx-auto mt-4 sm:mt-6 max-w-2xl text-center text-pretty text-xs sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 px-2">
         Your GitHub already tells the story. It just needs a better frame.
       </p>
 
-      <div className="mt-10 flex flex-col items-center justify-center gap-3">
-        <div className="flex w-lg max-w-full">
+      <div className="mt-10 flex flex-col items-center justify-center gap-3 px-2">
+        <div className="flex w-full sm:w-lg max-w-full">
           <PrimaryButton>
             Make your work visible
           </PrimaryButton>

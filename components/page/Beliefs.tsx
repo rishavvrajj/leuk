@@ -27,22 +27,22 @@ export function Beliefs() {
   ];
 
   return (
-    <SectionShell id="beliefs" contentClassName="p-8">
+    <SectionShell id="beliefs" contentClassName="p-4 sm:p-8 lg:p-12">
       <SectionHeading
         eyebrow="Philosophy"
         title="What we believe."
-        description="Leuk exists to give your work a home. Growth should be visible. Progress should be celebrated. Builders should be able to look back at their journey with pride — not only at what they shipped, but at how far they’ve come."
+        description="Leuk exists to give your work a home. Growth should be visible. Progress should be celebrated. Builders should be able to look back at their journey with pride, not only at what they shipped, but at how far they’ve come."
       />
-      <div className="mt-12 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 sm:mt-12 grid gap-4 grid-cols-1 sm:grid-cols-2">
         {beliefs.map((belief) => (
           <article
             key={belief.title}
-            className="rounded-xs border border-neutral-200/80 bg-white p-6 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-950 hover:shadow-md sm:p-8 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:border-neutral-300"
+            className="rounded-xs border border-neutral-200/80 bg-white p-4 sm:p-8 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-950 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-950 dark:hover:border-neutral-300"
           >
-            <h3 className="text-lg font-semibold tracking-tight text-neutral-950 sm:text-xl dark:text-neutral-50">
+            <h3 className="text-base font-semibold tracking-tight text-neutral-950 sm:text-xl dark:text-neutral-50">
               {belief.title}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-600 sm:text-base dark:text-neutral-400">
+            <p className="mt-2 sm:mt-3 text-pretty text-xs sm:text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
               {belief.description}
             </p>
           </article>
